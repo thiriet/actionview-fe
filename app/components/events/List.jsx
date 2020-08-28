@@ -167,39 +167,39 @@ export default class List extends Component {
               _.map(collection[i].notifications, function(v, i) { 
                 let name = '';
                 if (v == 'assignee') {
-                  name = '当前经办人';
+                  name = 'Assignee';
                 } else if (v == 'reporter') {
                   name = 'Reporter';
                 } else if (v == 'project_principal') {
-                  name = '项目负责人';
+                  name = 'Project manager';
                 } else if (v == 'module_principal') {
-                  name = '模块负责人';
+                  name = 'Module manager';
                 } else if (v == 'current_user') {
-                  name = '当前用户';
+                  name = 'Current user';
                 } else if (v == 'watchers') {
-                  name = '所有关注者';
+                  name = 'Watchers';
                 } else if (v.key == 'user' && v.value && v.value.name) {
-                  name = '单一用户: ' + v.value.name;
+                  name = 'Single user: ' + v.value.name;
                 } else if (v.key == 'role' && v.value) {
                   const role = _.find(options.roles || [], { id: v.value });
                   if (role) {
                     name = 'Role: ' + role.name;
                   } else {
-                    name = 'Role: 不明确';
+                    name = 'Role: undefined';
                   }
                 } else if (v.key == 'single_user_field' && v.value) {
                   const role = _.find(options.single_user_fields || [], { id: v.value });
                   if (role) {
-                    name = '单一用户字段: ' + role.name;
+                    name = 'Single user field: ' + role.name;
                   } else {
-                    name = '单一用户字段: 不明确';
+                    name = 'Single user field: undefined';
                   }
                 } else if (v.key == 'multi_user_field' && v.value) {
                   const role = _.find(options.multi_user_fields || [], { id: v.value });
                   if (role) {
-                    name = '多用户字段: ' + role.name;
+                    name = 'Multiuser field: ' + role.name;
                   } else {
-                    name = '多用户字段: 不明确';
+                    name = 'Multiuser field: undefined';
                   }
                 }
                 return (<li key={ i }>{ name }</li>) 
@@ -211,7 +211,7 @@ export default class List extends Component {
           { operateShow && hoverRowId === collection[i].id && !itemLoading &&
             <DropdownButton pullRight bsStyle='link' style={ { textDecoration: 'blink' ,color: '#000' } } key={ i } title={ node } id={ `dropdown-basic-${i}` } onSelect={ this.operateSelect.bind(this) }>
               { !isGlobal && sysEvents.indexOf(collection[i].key || '') === -1 && <MenuItem eventKey='1'>Edit</MenuItem> }
-              <MenuItem eventKey='2'>通知设置</MenuItem>
+              <MenuItem eventKey='2'>Notification settings</MenuItem>
               { isGlobal && <MenuItem eventKey='3'>重置通知</MenuItem> }
               { !isGlobal && sysEvents.indexOf(collection[i].key || '') === -1 && <MenuItem eventKey='4'>Delete</MenuItem> }
             </DropdownButton> }
@@ -236,7 +236,7 @@ export default class List extends Component {
         <BootstrapTable data={ events } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='notifications'>通知设置</TableHeaderColumn>
+          <TableHeaderColumn dataField='notifications'>Notification settings</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
         { this.state.editModalShow && 

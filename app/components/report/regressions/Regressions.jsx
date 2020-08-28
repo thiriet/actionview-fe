@@ -154,7 +154,7 @@ export default class Regressions extends Component {
         <div className='report-title'>
           问题解决回归分布 
           <Link to={ '/project/' + project.key + '/report' }>
-            <Button bsStyle='link'>返回</Button>
+            <Button bsStyle='link'>Back</Button>
           </Link>
         </div>
         <Form horizontal className='report-filter-form'>

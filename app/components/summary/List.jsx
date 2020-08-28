@@ -94,7 +94,7 @@ export default class List extends Component {
               <tr>
                 <td>
                   <Link to={ '/project/' + project.key + '/issue?created_at=2w' }>
-                    New 问题
+                    New issue
                   </Link>
                 </td>
                 { _.map(data.trend || [], (v, i) => <td key={ i }><Link to={ '/project/' + project.key + '/issue?created_at=' + v.day + '~' + v.day }>{ v.new }</Link></td>) }

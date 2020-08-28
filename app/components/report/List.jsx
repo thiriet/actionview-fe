@@ -106,7 +106,7 @@ export default class List extends Component {
           <span
             className='report-button report-edit-button'
             onClick={ () => { this.setState({ selectedBlock: v, searchConfigShow: true }) } }
-            title='编辑顺序'>
+            title='Edit order'>
             <i className='fa fa-pencil'></i>
           </span> }
           <span

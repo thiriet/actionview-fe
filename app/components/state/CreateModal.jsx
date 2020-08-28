@@ -81,7 +81,7 @@ export default class CreateModal extends Component {
     return (
       <Modal show onHide={ this.handleCancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>创建问题状态</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>Create issue status</Modal.Title>
         </Modal.Header>
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyDown={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body>
@@ -91,7 +91,7 @@ export default class CreateModal extends Component {
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
-            <ControlLabel><span className='txt-impt'>*</span>类别</ControlLabel>
+            <ControlLabel><span className='txt-impt'>*</span>Category</ControlLabel>
             <Select
               disabled={ submitting }
               options={ categoryOptions }
@@ -100,7 +100,7 @@ export default class CreateModal extends Component {
               searchable={ false }
               value={ category.value || null }
               onChange={ newValue => { category.onChange(newValue) } }
-              placeholder='请选择类别'/>
+              placeholder='Please select a category'/>
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>Description</ControlLabel>

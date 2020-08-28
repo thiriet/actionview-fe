@@ -93,7 +93,7 @@ export default class CopyModal extends Component {
           <FormControl type='hidden' { ...id }/>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <ControlLabel><span className='txt-impt'>*</span>新工作流名</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='工作流名'/>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Workflow name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>

@@ -43,11 +43,11 @@ export default class MoveIssueNotify extends Component {
       <Modal show onHide={ this.cancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
           <Modal.Title id='contained-modal-title-la'>
-           提示 
+           Hint
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          移动此问题Sprint 范围将受到影响，是否继续移动? <br/>
+          When moving this issue, Sprint will be affected? <br/>
         </Modal.Body>
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !loading && errMsg[this.state.ecode] }</span>

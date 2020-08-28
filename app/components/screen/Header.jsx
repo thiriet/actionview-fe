@@ -35,7 +35,7 @@ export default class Header extends Component {
           <div className='info-icon'><i className='fa fa-info-circle'></i></div>
           <div className='info-content'>
             <span>The interface is the arrangement and attribute definition of the fields, and the page is displayed when creating a question, editing a question, or executing a workflow process.<br/>If you create or edit a page defining the problem，the subject field should be added to the page first，and set it as a required field.<br/>You can only delete the type that is not associated with the issue
-              { isSysConfig && '（Each project includes a custom question types）' }和没有应用到工作流{ isSysConfig && '（包括各项目自定义工作流）' }of界面。</span>
+              { isSysConfig && '（Each project includes a custom question types）' }和没有应用到工作流{ isSysConfig && '（Including custom workflows for each project）' }of界面。</span>
           </div>
         </div>
         { this.state.createModalShow && 

@@ -153,7 +153,7 @@ export default class Header extends Component {
     } else if (patten1.exec(pathname)) {
       modulename = (curProject.key ? curProject.key + ' - ' : '') + 'Summary';
     } else if (patten3.exec(pathname)) {
-      modulename = (curProject.key ? curProject.key + ' - ' : '') + '工作流配置';
+      modulename = (curProject.key ? curProject.key + ' - ' : '') + 'Workflow configuration';
     } else if (patten2.exec(pathname)) {
       const moduleKey = RegExp.$2;
       const module = _.find(Modules, { key: moduleKey }); 
@@ -171,7 +171,7 @@ export default class Header extends Component {
         modulename = 'Other';
       }
     } else if (patten7.exec(pathname)) {
-      modulename = 'Project configuration - 工作流配置';
+      modulename = 'Project configuration - Workflow configuration';
     } else if (patten4.exec(pathname)) {
       modulename = 'Project list';
     } else if (patten5.exec(pathname)) {

@@ -151,21 +151,21 @@ export default class ConfigHeader extends Component {
         </div> }
         <div style={ { marginTop: '5px' } }>
           <Link to={ pathname.substr(0, pathname.lastIndexOf('/')) }>
-            <Button className='create-btn'><i className='fa fa-reply'></i>&nbsp;返回</Button>
+            <Button className='create-btn'><i className='fa fa-reply'></i>&nbsp;Back</Button>
           </Link>
           <Button 
             className='create-btn' 
             onClick={ () => { this.setState({ previewModalShow: true }); } } 
             disabled={ collection.length <= 0 }>
-            <i className='fa fa-search-plus'></i>&nbsp;预览
+            <i className='fa fa-search-plus'></i>&nbsp;Preview
           </Button>
           <Button 
             className='create-btn' 
             onClick={ () => { this.setState({ createStepModalShow: true }); } }>
-            <i className='fa fa-plus'></i>&nbsp;New 步骤
+            <i className='fa fa-plus'></i>&nbsp;New step
           </Button>
           <span style={ { float: 'right', marginTop: '20px', marginRight: '10px', fontWeight: 'bold' } }>{ workflowName }</span>
-          <span style={ { float: 'right', marginTop: '20px' } }>工作流名称：</span>
+          <span style={ { float: 'right', marginTop: '20px' } }>Workflow name：</span>
         </div>
         <div className='info-col'>
           <div className='info-icon'>

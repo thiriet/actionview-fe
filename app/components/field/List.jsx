@@ -169,7 +169,7 @@ export default class List extends Component {
                 { (collection[i].type === 'Select.Async' || collection[i].type === 'MultiSelect.Async') && <MenuItem eventKey='5'>数据源配置</MenuItem> }
                 { collection[i].type !== 'File' && collection[i].type !== 'SingleVersion' && collection[i].type !== 'MultiVersion' && collection[i].type !== 'SingleUser' && collection[i].type !== 'MultiUser' && collection[i].type !== 'TimeTracking' && collection[i].type !== 'DateTimePicker' && <MenuItem eventKey='3'>默认值配置</MenuItem> }
                 <MenuItem eventKey='1'>Edit</MenuItem>
-                { pkey === '$_sys_$' && <MenuItem eventKey='6'>查看项目应用</MenuItem> }
+                { pkey === '$_sys_$' && <MenuItem eventKey='6'>View project applications</MenuItem> }
                 { !collection[i].is_used && <MenuItem eventKey='2'>Delete</MenuItem> }
               </DropdownButton>
             }

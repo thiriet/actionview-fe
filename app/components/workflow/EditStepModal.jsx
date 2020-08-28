@@ -91,14 +91,14 @@ export default class CreateModal extends Component {
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <FormControl type='hidden' { ...id }/>
             <ControlLabel>
-              <span className='txt-impt'>*</span>步骤名
+              <span className='txt-impt'>*</span>step name
             </ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='步骤名'/>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='step name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>
-              <span className='txt-impt'>*</span>链接状态
+              <span className='txt-impt'>*</span>Link status
             </ControlLabel>
             <Select 
               disabled={ submitting } 
@@ -106,7 +106,7 @@ export default class CreateModal extends Component {
               simpleValue 
               value={ state.value } 
               onChange={ newValue => { state.onChange(newValue) } } 
-              placeholder='请选择状态' 
+              placeholder='Select status'
               clearable={ false } 
               searchable={ false }/>
           </FormGroup>

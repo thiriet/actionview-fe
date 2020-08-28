@@ -244,7 +244,7 @@ export default class AddLDAPModal extends Component {
                     { id.value &&
                     <a style={ { fontWeight: 'normal', fontSize: '12px', cursor: 'pointer', marginLeft: '5px' } }
                       onClick={ (e) => { e.preventDefault(); if (this.state.passwordShow) { admin_password.onChange('') } this.setState({ passwordShow: !this.state.passwordShow }) } }>
-                      { this.state.passwordShow ? 'Cancel' : '设置' }
+                      { this.state.passwordShow ? 'Cancel' : 'Set up' }
                     </a> }
                   </ControlLabel>
                   { this.state.passwordShow && <FormControl disabled={ submitting } type='text' { ...admin_password } placeholder='密码'/> }

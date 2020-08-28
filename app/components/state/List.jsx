@@ -156,7 +156,7 @@ export default class List extends Component {
               id={ `dropdown-basic-${i}` } 
               onSelect={ this.operateSelect.bind(this) }>
               <MenuItem eventKey='1'>Edit</MenuItem>
-              { pkey === '$_sys_$' && <MenuItem eventKey='3'>查看项目应用</MenuItem> }
+              { pkey === '$_sys_$' && <MenuItem eventKey='3'>View project applications</MenuItem> }
               { !collection[i].is_used && <MenuItem eventKey='2'>Delete</MenuItem> }
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === collection[i].id) ? 'loading' : 'hide' }/>
@@ -180,8 +180,8 @@ export default class List extends Component {
         <BootstrapTable data={ states } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='category'>类别</TableHeaderColumn>
-          <TableHeaderColumn dataField='workflow'>应用工作流</TableHeaderColumn>
+          <TableHeaderColumn dataField='category'>Category</TableHeaderColumn>
+          <TableHeaderColumn dataField='workflow'>Application workflow</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
         { this.state.editModalShow && 

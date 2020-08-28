@@ -165,7 +165,7 @@ export default class Trend extends Component {
         <div className='report-title'>
           问题趋势图 
           <Link to={ '/project/' + project.key + '/report' }>
-            <Button bsStyle='link'>返回</Button>
+            <Button bsStyle='link'>Back</Button>
           </Link>
         </div>
         <Form horizontal className='report-filter-form'>

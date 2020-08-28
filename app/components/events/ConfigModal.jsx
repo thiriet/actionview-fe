@@ -122,7 +122,7 @@ export default class ConfigModal extends Component {
     return (
       <Modal show onHide={ this.cancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>通知设置 - { data.name }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>Notification settings - { data.name }</Modal.Title>
         </Modal.Header>
         <Modal.Body style={ { maxHeight: '420px', overflow: 'auto' } }>
           <div style={ { paddingTop: '10px', paddingBottom: '0px', paddingLeft: '5px' } }>
@@ -154,7 +154,7 @@ export default class ConfigModal extends Component {
                 <li>
                   <div style={ { width: '50%', display: 'inline-block' } }>
                     <Checkbox disabled={ loading } value='project_principal'/>
-                    <span>项目负责人</span>
+                    <span>project manager</span>
                   </div>
                   <div style={ { width: '50%', display: 'inline-block' } }>
                     <Checkbox disabled={ loading } value='module_principal'/>

@@ -146,12 +146,12 @@ export default class List extends Component {
                 key={ i } 
                 id={ `dropdown-basic-${i}` } 
                 onSelect={ this.operateSelect.bind(this) }>
-                <MenuItem eventKey='6'>预览</MenuItem>
+                <MenuItem eventKey='6'>Preview</MenuItem>
                 { !isGlobal && <MenuItem eventKey='3'>界面配置</MenuItem> }
                 { !isGlobal && <MenuItem eventKey='4'>字段配置</MenuItem> }
                 <MenuItem eventKey='5'>Copy</MenuItem>
                 { !isGlobal && <MenuItem eventKey='1'>Edit</MenuItem> }
-                { pkey === '$_sys_$' && <MenuItem eventKey='7'>查看项目应用</MenuItem> }
+                { pkey === '$_sys_$' && <MenuItem eventKey='7'>View project applications</MenuItem> }
                 { !isGlobal && !collection[i].is_used && <MenuItem eventKey='2'>Delete</MenuItem> }
               </DropdownButton>
             }
@@ -176,7 +176,7 @@ export default class List extends Component {
         <BootstrapTable data={ screens } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name' >Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='workflow'>应用工作流</TableHeaderColumn>
+          <TableHeaderColumn dataField='workflow'>Application workflow</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
         { this.state.previewModalShow && 

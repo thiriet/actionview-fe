@@ -149,7 +149,7 @@ export default class Worklog extends Component {
         <div className='report-title'>
           人员工作日志报告 
           <Link to={ '/project/' + project.key + '/report' }>
-            <Button bsStyle='link'>返回</Button>
+            <Button bsStyle='link'>Back</Button>
           </Link>
         </div>
         <Form horizontal className='report-filter-form'>

@@ -100,7 +100,7 @@ export default class EditModal extends Component {
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
-            <ControlLabel><span className='txt-impt'>*</span>类别</ControlLabel>
+            <ControlLabel><span className='txt-impt'>*</span>Category</ControlLabel>
             <Select
               disabled={ submitting }
               options={ categoryOptions }
@@ -109,7 +109,7 @@ export default class EditModal extends Component {
               searchable={ false }
               value={ category.value }
               onChange={ newValue => { category.onChange(newValue) } }
-              placeholder='请选择类别'/>
+              placeholder='Please select a category'/>
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>Description</ControlLabel>

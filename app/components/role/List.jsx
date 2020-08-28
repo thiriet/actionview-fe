@@ -193,7 +193,7 @@ export default class List extends Component {
               onSelect={ this.operateSelect.bind(this) }>
               { !isGlobal && <MenuItem eventKey='1'>Edit</MenuItem> }
               <MenuItem eventKey='5'>Configuration</MenuItem>
-              { pkey === '$_sys_$' && <MenuItem eventKey='4'>查看项目应用</MenuItem> }
+              { pkey === '$_sys_$' && <MenuItem eventKey='4'>View project applications</MenuItem> }
               { !isGlobal && !collection[i].is_used && <MenuItem eventKey='2'>Delete</MenuItem> }
               { isGlobal && <MenuItem eventKey='3'>Reset permissions</MenuItem> }
             </DropdownButton> }

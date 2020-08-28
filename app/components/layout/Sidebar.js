@@ -187,7 +187,7 @@ export default class Sidebar extends Component {
           </div>
           { session.user.permissions && session.user.permissions.sys_admin &&
           <div>
-            <h4 style={ { overflow: 'hidden', textOverflow: 'ellipsis' } }>管理员管理面板</h4>
+            <h4 style={ { overflow: 'hidden', textOverflow: 'ellipsis' } }>Administrator management panel</h4>
             <h4><i className={ this.state.adminSchemeShow ? 'fa fa-minus-square-o' : 'fa fa-plus-square-o' } onClick={ (e) => { this.setState({ adminSchemeShow: !this.state.adminSchemeShow }); e.nativeEvent.stopImmediatePropagation(); } }></i>Global scheme configuration</h4>
             <ul className={ !this.state.adminSchemeShow && 'hide' }>
               <li><Link to='/admin/scheme/type' activeClassName='menu-active'>Type</Link></li>

@@ -204,7 +204,7 @@ export default class List extends Component {
       return { label: val.name + '(' + val.email + ')', value: val.id };
     });
 
-    const defaultAssigneeOptions = [ { value: 'projectPrincipal', label: '项目负责人' }, { value: 'modulePrincipal', label: '模块负责人' }, { value: 'none', label: '未分配' } ];
+    const defaultAssigneeOptions = [ { value: 'projectPrincipal', label: 'project manager' }, { value: 'modulePrincipal', label: '模块负责人' }, { value: 'none', label: '未分配' } ];
 
     const modules = [];
     const moduleNum = collection.length;
@@ -258,7 +258,7 @@ export default class List extends Component {
                 options={ userOptions } 
                 value={ _.isUndefined(this.state.principal[collection[i].id]) ? collection[i].principal.id : this.state.principal[collection[i].id] } 
                 onChange={ this.handlePrincipalSelectChange.bind(this, collection[i].id) } 
-                placeholder='请选择用户'/>
+                placeholder='Select user'/>
               <div className={ _.indexOf(settingPrincipalModuleIds, collection[i].id) !== -1 ? 'hide' : '' } style={ { float: 'right' } }>
                 <Button className='edit-ok-button' onClick={ this.setPrincipal.bind(this, collection[i].id) }><i className='fa fa-check'></i></Button>
                 <Button className='edit-cancel-button' onClick={ this.cancelSetPrincipal.bind(this, collection[i].id) }><i className='fa fa-close'></i></Button>
@@ -303,7 +303,7 @@ export default class List extends Component {
                 options={ defaultAssigneeOptions } 
                 value={ this.state.defaultAssignee[collection[i].id] || collection[i].defaultAssignee } 
                 onChange={ this.handleDefaultAssigneeSelectChange.bind(this, collection[i].id) } 
-                placeholder='Default assignee(项目负责人)'/>
+                placeholder='Default assignee(project manager)'/>
               <div className={ _.indexOf(settingDefaultAssigneeModuleIds, collection[i].id) !== -1 ? 'hide' : '' } style={ { float: 'right' } }>
                 <Button className='edit-ok-button' onClick={ this.setDefaultAssignee.bind(this, collection[i].id) }><i className='fa fa-check'></i></Button>
                 <Button className='edit-cancel-button' onClick={ this.cancelSetDefaultAssignee.bind(this, collection[i].id) }><i className='fa fa-close'></i></Button>

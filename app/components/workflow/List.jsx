@@ -154,11 +154,11 @@ export default class List extends Component {
                 title={ node } key={ i } 
                 id={ `dropdown-basic-${i}` } 
                 onSelect={ this.operateSelect.bind(this) }>
-                <MenuItem eventKey='5'>预览</MenuItem>
+                <MenuItem eventKey='5'>Preview</MenuItem>
                 { !isGlobal && <MenuItem eventKey='3'>Configuration</MenuItem> }
                 <MenuItem eventKey='4'>Copy</MenuItem>
                 { !isGlobal && <MenuItem eventKey='1'>Edit</MenuItem> }
-                { pkey === '$_sys_$' && <MenuItem eventKey='6'>查看项目应用</MenuItem> }
+                { pkey === '$_sys_$' && <MenuItem eventKey='6'>View project applications</MenuItem> }
                 { !isGlobal && !collection[i].is_used && <MenuItem eventKey='2'>Delete</MenuItem> }
               </DropdownButton>
             }
@@ -182,8 +182,8 @@ export default class List extends Component {
         <BootstrapTable pullRight data={ workflows } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name' >Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='latest_modify'>最近配置修改</TableHeaderColumn>
-          <TableHeaderColumn dataField='step' width='200'>步骤</TableHeaderColumn>
+          <TableHeaderColumn dataField='latest_modify'>Recent configuration changes</TableHeaderColumn>
+          <TableHeaderColumn dataField='step' width='200'>step</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
         { this.state.editModalShow && 

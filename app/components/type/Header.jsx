@@ -70,14 +70,14 @@ export default class Header extends Component {
       <div>
         <div style={ { marginTop: '5px' } }>
           <Button className='create-btn' onClick={ () => { this.setState({ createModalShow: true }); } }>
-            <i className='fa fa-plus'></i>&nbsp;New 类型
+            <i className='fa fa-plus'></i>&nbsp;New type
           </Button>
           { !indexLoading && 
             <Button className='create-btn' onClick={ () => { this.setState({ sortCardsModalShow: true }); } }>
-              <i className='fa fa-pencil'></i>&nbsp;编辑顺序
+              <i className='fa fa-pencil'></i>&nbsp;Edit order
             </Button> }
           <div className={ indexLoading ? 'hide' : 'div-default-set' }>
-            <span className='default-set'>默认类型：</span>
+            <span className='default-set'>Default type：</span>
             { this.state.defaultSetShow ? 
               <div className='default-set'>
                 <div className='edit-field-content'>

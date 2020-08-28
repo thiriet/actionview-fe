@@ -12,7 +12,7 @@ const validate = (values, props) => {
   if (!values.name) {
     errors.name = 'Required';
   } else if (_.findIndex(props.collection || [], { name: values.name }) !== -1) {
-    errors.name = '该名称已存在';
+    errors.name = 'The name already exists';
   }
 
   return errors;
@@ -73,20 +73,20 @@ export default class CreateModal extends Component {
   render() {
     const { i18n: { errMsg }, fields: { name, defaultAssignee, principal, description }, options={}, handleSubmit, invalid, submitting } = this.props;
 
-    const assigneeOptions = [ { value: 'projectPrincipal', label: '项目负责人' }, { value: 'modulePrincipal', label: '模块负责人' }, { value: 'none', label: '未分配' } ];
+    const assigneeOptions = [ { value: 'projectPrincipal', label: 'project manager' }, { value: 'modulePrincipal', label: 'Module leader' }, { value: 'none', label: 'Undefined' } ];
 
     const userOptions = _.map(options.users || [], (value) => { return { value: value.id, label: value.name + '(' + value.email + ')' } });
 
     return (
       <Modal show onHide={ this.handleCancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>创建模块</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>Create module</Modal.Title>
         </Modal.Header>
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyDown={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <ControlLabel><span className='txt-impt'>*</span>Name</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='模块名'/ >
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Module name'/ >
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsSelect'>
@@ -107,7 +107,7 @@ export default class CreateModal extends Component {
               clearable={ true } 
               value={ defaultAssignee.value } 
               onChange={ newValue => { defaultAssignee.onChange(newValue) } } 
-              placeholder='Default assignee(项目负责人)'/>
+              placeholder='Default assignee(project manager)'/>
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>Description</ControlLabel>

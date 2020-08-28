@@ -79,8 +79,8 @@ export default class EditModal extends Component {
         <Modal.Body>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <FormControl type='hidden' { ...id }/>
-            <ControlLabel><span className='txt-impt'>*</span>工作流名</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='工作流名'/>
+            <ControlLabel><span className='txt-impt'>*</span>Workflow name</ControlLabel>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Workflow name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
