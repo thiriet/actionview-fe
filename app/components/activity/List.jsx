@@ -258,8 +258,8 @@ export default class List extends Component {
           <div>
             <span style={ { marginRight: '5px' } }><b>{ user.id === collection[i].user.id ? '我' : collection[i].user.name }</b></span>
 
-            { collection[i].event_key == 'create_link'     && <span>创建了问题链接</span> }
-            { collection[i].event_key == 'del_link'        && <span>删除了问题链接</span> }
+            { collection[i].event_key == 'create_link'     && <span>Issue linked</span> }
+            { collection[i].event_key == 'del_link'        && <span>Issue unlinked</span> }
             { collection[i].issue_link &&
               <ul className='list-unstyled clearfix' style={ { marginTop: '10px', marginBottom: '5px', fontSize: '12px' } }>
                 <li>
@@ -291,20 +291,20 @@ export default class List extends Component {
                 </li>
               </ul> }
 
-            { collection[i].event_key == 'create_issue'    && <span>创建了</span> }
-            { collection[i].event_key == 'edit_issue'      && <span>更新了</span> }
-            { collection[i].event_key == 'del_issue'       && <span>删除了</span> }
-            { collection[i].event_key == 'assign_issue'    && <span>分配了</span> }
-            { collection[i].event_key == 'reset_issue'     && <span>重置了</span> }
-            { collection[i].event_key == 'move_issue'      && <span>移动了</span> }
-            { collection[i].event_key == 'start_progress_issue'   && <span>开始解决</span> }
-            { collection[i].event_key == 'stop_progress_issue'    && <span>停止解决</span> }
-            { collection[i].event_key == 'resolve_issue'   && <span>解决了</span> }
-            { collection[i].event_key == 'close_issue'     && <span>关闭了</span> }
+            { collection[i].event_key == 'create_issue'    && <span>Created</span> }
+            { collection[i].event_key == 'edit_issue'      && <span>Updated</span> }
+            { collection[i].event_key == 'del_issue'       && <span>Deleted</span> }
+            { collection[i].event_key == 'assign_issue'    && <span>Assigned</span> }
+            { collection[i].event_key == 'reset_issue'     && <span>Reset</span> }
+            { collection[i].event_key == 'move_issue'      && <span>Moved</span> }
+            { collection[i].event_key == 'start_progress_issue'   && <span>Start progress</span> }
+            { collection[i].event_key == 'stop_progress_issue'    && <span>Stop progress</span> }
+            { collection[i].event_key == 'resolve_issue'   && <span>Resolved</span> }
+            { collection[i].event_key == 'close_issue'     && <span>Closed</span> }
             { collection[i].event_key == 'reopen_issue'    && <span>Reopen</span> }
-            { collection[i].event_key == 'watched_issue'   && <span>关注了</span> }
-            { collection[i].event_key == 'unwatched_issue' && <span>取消关注了</span> }
-            { collection[i].event_key.indexOf('_') === -1  && <span>将</span> }
+            { collection[i].event_key == 'watched_issue'   && <span>Watched</span> }
+            { collection[i].event_key == 'unwatched_issue' && <span>Unwatched</span> }
+            { collection[i].event_key.indexOf('_') === -1  && <span>by</span> }
             { collection[i].issue && <span style={ { marginRight: '5px' } }>Issue</span> }
             { collection[i].issue && (collection[i].issue.del_flg === 1 ? <span style={ ltStyles }>{ collection[i].issue.no + ' - ' + collection[i].issue.title }</span> : <a href='#' style={ collection[i].issue.state == 'Closed' ? { textDecoration: 'line-through' } : {} } onClick={ (e) => { e.preventDefault(); this.issueView(collection[i].issue.id); } }><span style={ { marginRight: '5px', whiteSpace: 'pre-wrap', wordWrap: 'break-word' } }>{ collection[i].issue.no + ' - ' + collection[i].issue.title }</span></a>) }
             { wfEventFlag && collection[i].event_key.indexOf('_') !== -1 && <span>, </span> }
@@ -313,9 +313,9 @@ export default class List extends Component {
             <span>
             { _.map(collection[i].data, (v, i) => {
               if ( i === 0) {
-                return (<span>{ v.field + ' 更新为: ' + v.after_value }</span>);
+                return (<span>{ v.field + ' update to: ' + v.after_value }</span>);
               } else {
-                return (<span>{ ', ' + v.field + ' 更新为: ' + v.after_value }</span>);
+                return (<span>{ ', ' + v.field + ' update to: ' + v.after_value }</span>);
               }
             }) }
             </span> }
@@ -326,7 +326,7 @@ export default class List extends Component {
               return (<li style={ { whiteSpace: 'pre-wrap', wordWrap: 'break-word' } } key={ i } dangerouslySetInnerHTML={ { __html: v.field + ': ' + (_.isString(v.after_value) ? _.escape(v.after_value).replace(/(\r\n)|(\n)/g, '<br/>') : v.after_value) } }/>);
             }) }
             </ul> }
-            { collection[i].event_key == 'assign_issue'    && <span>给 { collection[i].data.new_user && user.id === collection[i].data.new_user.id ? '我' : (collection[i].data.new_user.name || '') }</span> }
+            { collection[i].event_key == 'assign_issue'    && <span>to { collection[i].data.new_user && user.id === collection[i].data.new_user.id ? 'me' : (collection[i].data.new_user.name || '') }</span> }
 
             { collection[i].event_key == 'add_file' && <span>Uploaded document { collection[i].data }</span> }
             { collection[i].event_key == 'del_file' && <span>Document deleted <span style={ ltStyles }>{ collection[i].data }</span></span> }
