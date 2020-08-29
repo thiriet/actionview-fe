@@ -82,7 +82,7 @@ export default class ConfigActorModal extends Component {
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyDown={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body>
           <FormGroup controlId='formControlsText'>
-            <ControlLabel>系统管理员</ControlLabel>
+            <ControlLabel>System admin</ControlLabel>
             <Select.Async 
               multi
               clearable={ false } 

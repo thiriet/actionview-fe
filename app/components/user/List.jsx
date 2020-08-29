@@ -343,7 +343,7 @@ export default class List extends Component {
             </span>
             { this.state.selectedIds.length > 0 &&
             <span style={ { float: 'left', marginRight: '10px' } }>
-              <DropdownButton title='操作' onSelect={ this.multiOperateSelect.bind(this) }>
+              <DropdownButton title='Operation' onSelect={ this.multiOperateSelect.bind(this) }>
                 { !multiDelShow && <MenuItem disabled eventKey='null'>无</MenuItem> }
                 { multiDelShow && <MenuItem eventKey='del'>Delete</MenuItem> }
                 { multiValidShow && <MenuItem eventKey='validate'>enable</MenuItem> }

@@ -260,7 +260,7 @@ export default class List extends Component {
       id: 'sysadmin',
       title: (
         <div>
-          <span className='table-td-title'>系统管理员</span>
+          <span className='table-td-title'>System admin</span>
         </div>
       ),
       contents: (

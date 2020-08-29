@@ -462,7 +462,7 @@ export default class List extends Component {
             </span>
             { this.state.selectedIds.length > 0 &&
             <span style={ { float: 'left', marginRight: '10px' } }>
-              <DropdownButton title='操作' onSelect={ this.multiOperateSelect.bind(this) }>
+              <DropdownButton title='Operation' onSelect={ this.multiOperateSelect.bind(this) }>
                 <MenuItem eventKey='close'>Close</MenuItem>
                 <MenuItem eventKey='reopen'>Reopen</MenuItem>
                 <MenuItem eventKey='create_index'>Reindex</MenuItem>
