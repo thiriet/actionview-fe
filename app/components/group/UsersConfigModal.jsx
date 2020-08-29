@@ -98,7 +98,7 @@ export default class UsersConfigModal extends Component {
     return (
       <Modal show onHide={ this.cancel.bind(this) } bsSize='large' backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>{ '用户配置 - ' + this.props.data.name }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>{ 'User configuration - ' + this.props.data.name }</Modal.Title>
         </Modal.Header>
         <Modal.Body style={ { height: '420px', overflow: 'auto' } }>
           <Form horizontal>
@@ -114,10 +114,10 @@ export default class UsersConfigModal extends Component {
                   labelKey='nameAndEmail'
                   loadOptions={ this.searchUsers }
                   placeholder='enter a username'/>
-                <Button style={ { float: 'right', marginTop: '15px' } } onClick={ this.add.bind(this) }>添加至用户列表 >> </Button>
+                <Button style={ { float: 'right', marginTop: '15px' } } onClick={ this.add.bind(this) }>Add to user list >> </Button>
               </Col>
               <Col sm={ 6 }>
-                { users.length > 0 && <div style={ { marginBottom: '8px' } }>用户列表 - { users.length }</div> }
+                { users.length > 0 && <div style={ { marginBottom: '8px' } }>User list - { users.length }</div> }
                 { users.length > 0 ?
                   users.map((op, i) => {
                     return (
