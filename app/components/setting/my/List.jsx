@@ -178,7 +178,7 @@ export default class List extends Component {
       contents: (
         <div style={ styles }>
           <ul className='list-unstyled clearfix' style={ { lineHeight: 2.0 } }>
-            <li>姓名：{ accounts.first_name || '-' }</li>
+            <li>Name：{ accounts.first_name || '-' }</li>
             <li>部门：{ accounts.department || '-' }</li>
             <li>职位：{ accounts.position || '-' }</li>
           </ul>

@@ -81,7 +81,7 @@ export default class EditModal extends Component {
         <Modal.Body>
           <FormGroup controlId='formControlsText' validationState={ first_name.touched && first_name.error ? 'error' : null }>
             <ControlLabel><span className='txt-impt'>*</span>Name</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...first_name } placeholder='姓名'/>
+            <FormControl disabled={ submitting } type='text' { ...first_name } placeholder='Name'/>
             { first_name.touched && first_name.error && <HelpBlock style={ { float: 'right' } }>{ first_name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>

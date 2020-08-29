@@ -494,7 +494,7 @@ class CreateModal extends Component {
                       max={ v.key == 'progress' ? '100' : '' }
                       disabled={ loading }
                       value={ this.state.values[v.key] }
-                      onChange={ (e) => { v.required && !e.target.value ? this.state.errors[v.key] = 'Required' : (e.target.value && isNaN(e.target.value) ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]); this.state.values[v.key] = e.target.value; this.setState({ values: this.state.values, errors: this.state.errors }); } }
+                      onChange={ (e) => { v.required && !e.target.value ? this.state.errors[v.key] = 'Required' : (e.target.value && isNaN(e.target.value) ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]); this.state.values[v.key] = e.target.value; this.setState({ values: this.state.values, errors: this.state.errors }); } }
                       onBlur={ (e) => { this.state.touched[v.key] = true; this.setState({ touched: this.state.touched }); } }
                       placeholder={ 'Enter' + v.name } />
                   </Col>
@@ -607,7 +607,7 @@ class CreateModal extends Component {
                       timeFormat={ v.type === 'DateTimePicker' ?  'HH:mm' : false } 
                       closeOnSelect={ v.type === 'DatePicker' }
                       value={ this.state.values[v.key] } 
-                      onChange={ newValue => { v.required && !newValue ? this.state.errors[v.key] = 'Required' : (newValue && !moment(newValue).isValid() ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]); this.state.touched[v.key] = true; this.state.values[v.key] = newValue; this.setState({ values: this.state.values, errors: this.state.errors, touched: this.state.touched }); } }/>
+                      onChange={ newValue => { v.required && !newValue ? this.state.errors[v.key] = 'Required' : (newValue && !moment(newValue).isValid() ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]); this.state.touched[v.key] = true; this.state.values[v.key] = newValue; this.setState({ values: this.state.values, errors: this.state.errors, touched: this.state.touched }); } }/>
                   </Col>
                   <Col sm={ 2 } componentClass={ ControlLabel } style={ { textAlign: 'left' } }>
                     { this.state.touched[v.key] && (this.state.errors[v.key] || '') }
@@ -646,7 +646,7 @@ class CreateModal extends Component {
                       type='text'
                       disabled={ loading }
                       value={ this.state.values[v.key] }
-                      onChange={ (e) => { v.required && !e.target.value ? this.state.errors[v.key] = 'Required' : (e.target.value && !this.urlTest(e.target.value) ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]); this.state.values[v.key] = e.target.value; this.setState({ values: this.state.values, errors: this.state.errors }); } }
+                      onChange={ (e) => { v.required && !e.target.value ? this.state.errors[v.key] = 'Required' : (e.target.value && !this.urlTest(e.target.value) ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]); this.state.values[v.key] = e.target.value; this.setState({ values: this.state.values, errors: this.state.errors }); } }
                       onBlur={ (e) => { this.state.touched[v.key] = true; this.setState({ touched: this.state.touched }); } }
                       placeholder={ 'Enter' + v.name } />
                   </Col>
@@ -663,7 +663,7 @@ class CreateModal extends Component {
                       type='text'
                       disabled={ loading }
                       value={ this.state.values[v.key] }
-                      onChange={ (e) => { v.required && !e.target.value ? this.state.errors[v.key] = 'Required' : (e.target.value && !this.ttTest(e.target.value) ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]); this.state.values[v.key] = e.target.value; this.setState({ values: this.state.values, errors: this.state.errors }); } }
+                      onChange={ (e) => { v.required && !e.target.value ? this.state.errors[v.key] = 'Required' : (e.target.value && !this.ttTest(e.target.value) ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]); this.state.values[v.key] = e.target.value; this.setState({ values: this.state.values, errors: this.state.errors }); } }
                       onBlur={ (e) => { this.state.touched[v.key] = true; this.setState({ touched: this.state.touched }); } }
                       placeholder={ '例如：3w 4d 12h 30m' } />
                   </Col>

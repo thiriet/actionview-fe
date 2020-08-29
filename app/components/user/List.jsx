@@ -378,8 +378,8 @@ export default class List extends Component {
             trClassName='tr-middle' 
             selectRow={ selectRowProp }>
             <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='name'>姓名</TableHeaderColumn>
-            <TableHeaderColumn dataField='email'>邮箱</TableHeaderColumn>
+            <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
+            <TableHeaderColumn dataField='email'>E-mail</TableHeaderColumn>
             <TableHeaderColumn dataField='groups'>所属组</TableHeaderColumn>
             <TableHeaderColumn dataField='directory'>目录</TableHeaderColumn>
             <TableHeaderColumn width='60' dataField='operation'/>

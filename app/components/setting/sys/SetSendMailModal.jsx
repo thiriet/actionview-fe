@@ -12,7 +12,7 @@ const validate = (values, props) => {
   if (!values.from) {
     errors.from = 'Required';
   } else if (!/^(\w-*\.*)+@(\w+[\w|-]*)+(\.\w+[\w|-]*)*(\.\w{2,})+$/.test(values.from)) {
-    errors.from = '格式有误';
+    errors.from = 'Incorrect format';
   }
   return errors;
 };

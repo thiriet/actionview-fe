@@ -20,7 +20,7 @@ const validate = (values, props) => {
   } else {
     const pattern = new RegExp(/^[a-zA-Z0-9]/);
     if (!pattern.test(values.abb)) {
-      errors.abb = '格式有误';
+      errors.abb = 'Incorrect format';
     } else if (props.data.abb !== values.abb && _.findIndex(props.collection || [], { abb: values.abb }) !== -1) {
       errors.abb = '该缩码已存在';
     }

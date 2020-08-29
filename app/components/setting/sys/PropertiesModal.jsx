@@ -10,7 +10,7 @@ const img = require('../../../assets/images/loading.gif');
 const validate = (values, props) => {
   const errors = {};
   if (values.login_mail_domain && !/^[\w-]+([.][\w-]+)+$/.test(values.login_mail_domain)) {
-    errors.login_mail_domain = '格式有误';
+    errors.login_mail_domain = 'Incorrect format';
   }
   //if (values.enable_login_protection && !/^[1-9][0-9]*$/.test(values.enable_login_protection)) {
   //  errors.enable_login_protection = '必须输入正整数';

@@ -121,7 +121,7 @@ export default class AddWorklogModal extends Component {
       this.state.errors[field] = 'Required'
     } else {
       if (!this.ttTest(e.target.value)) {
-        this.state.errors[field] = '格式有误';
+        this.state.errors[field] = 'Incorrect format';
       } else {
         delete this.state.errors[field];
       }
@@ -135,7 +135,7 @@ export default class AddWorklogModal extends Component {
       this.state.errors.started_at = 'Required'
     } else {
       if (!moment(newValue).isValid()) {
-        this.state.errors.started_at = '格式有误';
+        this.state.errors.started_at = 'Incorrect format';
       } else {
         delete this.state.errors.started_at;
       }

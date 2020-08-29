@@ -202,7 +202,7 @@ export default class MultiEditModal extends Component {
                         type='number'
                         disabled={ loading }
                         value={ this.state.values[v.key] || 0 }
-                        onChange={ (e) => { e.target.value && isNaN(e.target.value) ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]; this.setState({ values: { ...this.state.values, [v.key]: e.target.value } }) } }
+                        onChange={ (e) => { e.target.value && isNaN(e.target.value) ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]; this.setState({ values: { ...this.state.values, [v.key]: e.target.value } }) } }
                         max={ v.key == 'progress' ? '100' : '' }
                         placeholder={ 'Enter' + v.name } />
                     </Col>
@@ -271,7 +271,7 @@ export default class MultiEditModal extends Component {
                         timeFormat={ v.type === 'DateTimePicker' ?  'HH:mm' : false }
                         closeOnSelect={ v.type === 'DatePicker' }
                         value={ this.state.values[v.key] }
-                        onChange={ newValue => { newValue && !moment(newValue).isValid() ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]; this.setState({ values: { ...this.state.values, [v.key]: newValue } }) } } />
+                        onChange={ newValue => { newValue && !moment(newValue).isValid() ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]; this.setState({ values: { ...this.state.values, [v.key]: newValue } }) } } />
                     </Col>
                     <Col sm={ 3 } componentClass={ ControlLabel } style={ { textAlign: 'left' } }>
                       { this.state.errors[v.key] || '' }
@@ -288,7 +288,7 @@ export default class MultiEditModal extends Component {
                         type='text'
                         disabled={ loading }
                         value={ this.state.values[v.key] || '' }
-                        onChange={ (e) => { e.target.value && !this.ttTest(e.target.value) ? this.state.errors[v.key] = '格式有误' : delete this.state.errors[v.key]; this.setState({ values: { ...this.state.values, [v.key]: e.target.value } }) } }
+                        onChange={ (e) => { e.target.value && !this.ttTest(e.target.value) ? this.state.errors[v.key] = 'Incorrect format' : delete this.state.errors[v.key]; this.setState({ values: { ...this.state.values, [v.key]: e.target.value } }) } }
                         placeholder='例如：3w 4d 12h 30m' />
                     </Col>
                     <Col sm={ 6 } componentClass={ ControlLabel } style={ { textAlign: 'left' } }>

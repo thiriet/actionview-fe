@@ -101,11 +101,11 @@ class Register extends Component {
           { this.state.emailShow ?
           <form onSubmit={ handleSubmit(this.handleSubmit) }>
             <FormGroup controlId='formControlsText' validationState={ email.touched && email.error ? 'error' : null }>
-              <FormControl disabled={ submitting } type='text' { ...email } placeholder='邮箱'/>
+              <FormControl disabled={ submitting } type='text' { ...email } placeholder='E-mail'/>
               { email.touched && email.error && <HelpBlock style={ { marginLeft: '5px' } }>{ email.error }</HelpBlock> }
             </FormGroup>
             <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
-              <FormControl disabled={ submitting } type='text' { ...name } placeholder='姓名'/>
+              <FormControl disabled={ submitting } type='text' { ...name } placeholder='Name'/>
               { name.touched && name.error && <HelpBlock style={ { marginLeft: '5px' } }>{ name.error }</HelpBlock> }
             </FormGroup>
             <FormGroup controlId='formControlsText' validationState={ password.touched && password.error ? 'error' : null }>

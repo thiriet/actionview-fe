@@ -14,7 +14,7 @@ const validate = (values, props) => {
   }
   // if (!/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(values.ip)) {
   else if (!/^[\w-]+([.][\w-]+)+$/.test(values.host)) {
-    errors.host = '格式有误';
+    errors.host = 'Incorrect format';
   }
 
   if (!values.port) {
