@@ -246,8 +246,8 @@ export default class List extends Component {
           <div>
           { operateShow && hoverRowId === collection[i].id && !itemLoading &&
             <DropdownButton pullRight bsStyle='link' style={ { textDecoration: 'blink' ,color: '#000' } } key={ i } title={ node } id={ `dropdown-basic-${i}` } onSelect={ this.operateSelect.bind(this) }>
-              <MenuItem eventKey='view'>查看人员</MenuItem>
-              { (!collection[i].directory || collection[i].directory === 'self') && <MenuItem eventKey='config'>配置人员</MenuItem> }
+              <MenuItem eventKey='view'>View people</MenuItem>
+              { (!collection[i].directory || collection[i].directory === 'self') && <MenuItem eventKey='config'>Configure</MenuItem> }
               { (!collection[i].directory || collection[i].directory === 'self') && <MenuItem eventKey='edit'>Edit</MenuItem> }
               { (!collection[i].directory || collection[i].directory === 'self') && <MenuItem eventKey='del'>Delete</MenuItem> }
             </DropdownButton> }
@@ -306,17 +306,17 @@ export default class List extends Component {
                 style={ { height: '37px' } }
                 value={ this.state.name }
                 onChange={ (e) => { this.setState({ name: e.target.value }) } }
-                placeholder={ '组名查询...' } />
+                placeholder={ 'Query group name...' } />
             </span>
             { this.state.selectedIds.length > 0 &&
             <span style={ { float: 'left', marginRight: '10px' } }>
-              <DropdownButton title='操作' onSelect={ this.multiOperateSelect.bind(this) }>
+              <DropdownButton title='Operating' onSelect={ this.multiOperateSelect.bind(this) }>
                 { !multiDelShow && <MenuItem disabled eventKey='null'>无</MenuItem> }
                 { multiDelShow && <MenuItem eventKey='del'>Delete</MenuItem> }
               </DropdownButton>
             </span> }
             <span style={ { float: 'left', marginRight: '20px' } }>
-              <Button onClick={ () => { this.setState({ createModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-plus'></i>&nbsp;New 组</Button>
+              <Button onClick={ () => { this.setState({ createModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-plus'></i>&nbsp;New group</Button>
             </span>
           </FormGroup>
         </div>
@@ -325,15 +325,15 @@ export default class List extends Component {
             <div className='info-icon'><i className='fa fa-info-circle'></i></div>
             <div className='info-content'>
               <span>
-                从外部用户目录同步过来of用户组，不能对其做任何操作。
+                The of user group is synchronized from an external user directory, and no operations can be performed on it.
               </span>
             </div>
           </div>
           <BootstrapTable data={ groups } bordered={ false } hover options={ opts } trClassName='tr-middle' selectRow={ selectRowProp }>
             <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='name'>用户组名</TableHeaderColumn>
-            <TableHeaderColumn dataField='count'>用户个数</TableHeaderColumn>
-            <TableHeaderColumn dataField='directory'>目录</TableHeaderColumn>
+            <TableHeaderColumn dataField='name'>User group name</TableHeaderColumn>
+            <TableHeaderColumn dataField='count'>Number of users</TableHeaderColumn>
+            <TableHeaderColumn dataField='directory'>Directory</TableHeaderColumn>
             <TableHeaderColumn width='60' dataField='operation'/>
           </BootstrapTable>
           { this.state.editModalShow && 

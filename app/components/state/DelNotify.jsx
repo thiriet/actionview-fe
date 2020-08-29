@@ -22,7 +22,7 @@ export default class DelNotify extends Component {
     if (ecode === 0) {
       notify.show('Deletion complete', 'success', 2000);
     } else {
-      notify.show('删除失败。', 'error', 2000);    
+      notify.show('Deletion failed', 'error', 2000);
     }
   }
 

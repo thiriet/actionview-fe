@@ -77,7 +77,7 @@ export default class List extends Component {
       this.state.settingUserRoleIds.splice(settingIndex, 1);
 
       this.setState({ willSetUserRoleIds: this.state.willSetUserRoleIds, settingUserRoleIds: this.state.settingUserRoleIds });
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     }else {
       const settingIndex = _.indexOf(this.state.settingUserRoleIds, roleId);
       this.state.settingUserRoleIds.splice(settingIndex, 1);
@@ -130,7 +130,7 @@ export default class List extends Component {
       this.state.settingGroupRoleIds.splice(settingIndex, 1);
 
       this.setState({ willSetGroupRoleIds: this.state.willSetGroupRoleIds, settingGroupRoleIds: this.state.settingGroupRoleIds });
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     }else {
       const settingIndex = _.indexOf(this.state.settingGroupRoleIds, roleId);
       this.state.settingGroupRoleIds.splice(settingIndex, 1);

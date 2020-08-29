@@ -34,7 +34,7 @@ export default class ConfigSetModal extends Component {
     }));
     if (ecode === 0) {
       close();
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     }
     this.setState({ ecode: ecode });
   }

@@ -21,9 +21,9 @@ export default class DelNotify extends Component {
     close();
     const ecode = await del(data.id);
     if (ecode === 0) {
-      notify.show((data.d == 1 ? '目录' : 'Document') + '已删除。', 'success', 2000);
+      notify.show((data.d == 1 ? 'Directory' : 'Document') + '已删除。', 'success', 2000);
     } else {
-      notify.show(errMsg[ecode] + '，删除失败。', 'error', 2000);    
+      notify.show(errMsg[ecode] + '，Deletion failed', 'error', 2000);
     }
   }
 
@@ -35,7 +35,7 @@ export default class DelNotify extends Component {
   render() {
     const { data } = this.props;
 
-    const obj = data.d == 1 ? '目录' : 'Document';
+    const obj = data.d == 1 ? 'Directory' : 'Document';
 
     return (
       <Modal show onHide={ this.cancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>

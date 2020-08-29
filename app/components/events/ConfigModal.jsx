@@ -78,7 +78,7 @@ export default class ConfigModal extends Component {
     const ecode = await setNotify({ id: data.id, notifications });
     if (ecode === 0) {
       close();
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }

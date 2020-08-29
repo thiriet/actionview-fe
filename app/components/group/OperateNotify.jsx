@@ -23,7 +23,7 @@ export default class OperateNotify extends Component {
     if (ecode === 0) {
       notify.show('Deletion complete', 'success', 2000);
     } else {
-      notify.show('删除失败。', 'error', 2000);
+      notify.show('Deletion failed.', 'error', 2000);
     }
   }
 
@@ -38,10 +38,10 @@ export default class OperateNotify extends Component {
     return (
       <Modal show onHide={ this.cancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>删除用户组</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>Delete user group</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          是否删除【{ data.name }】该用户组？
+          Confirm deletion of user group { data.name }？
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={ this.confirm }>Submit</Button>

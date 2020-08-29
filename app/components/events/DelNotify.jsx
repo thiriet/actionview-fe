@@ -30,9 +30,9 @@ export default class DelNotify extends Component {
     } else  {
       ecode = await del(data.id);
       if (ecode === 0) {
-        notify.show('删除成功。', 'success', 2000);
+        notify.show('Deletion succeed', 'success', 2000);
       } else {
-        notify.show('删除失败。', 'success', 2000);
+        notify.show('Deletion failed', 'success', 2000);
       }
     }
   }

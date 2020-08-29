@@ -487,7 +487,7 @@ export default class List extends Component {
               { options.permissions && options.permissions.indexOf('manage_project') !== -1 &&
               <span style={ { float: 'right', marginRight: '10px' } }>
                 <Button onClick={ () => { this.cancelEditRow(); this.setState({ createFolderShow: true }); } } style={ { height: '36px' } } disabled={ indexLoading || itemLoading || !_.isEmpty(query) }>
-                  <i className='fa fa-plus'></i>&nbsp;New 目录
+                  <i className='fa fa-plus'></i>&nbsp;New Directory
                 </Button>
               </span> }
             </span>
