@@ -86,7 +86,7 @@ export default class CreateModal extends Component {
         <Modal.Body>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <ControlLabel><span className='txt-impt'>*</span>Name</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Module name'/ >
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Module name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsSelect'>

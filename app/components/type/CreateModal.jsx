@@ -109,12 +109,12 @@ export default class CreateModal extends Component {
         <Modal.Body>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <ControlLabel><span className='txt-impt'>*</span>Name</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Issue type name'/ >
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Issue type name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText' validationState={ abb.touched && abb.error ? 'error' : null }>
             <ControlLabel><span className='txt-impt'>*</span>Short</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...abb } placeholder='Abbreviation (a letter or number)'/ >
+            <FormControl disabled={ submitting } type='text' { ...abb } placeholder='Abbreviation (a letter or number)'/>
             { abb.touched && abb.error && <HelpBlock style={ { float: 'right' } }>{ abb.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsSelect'>
