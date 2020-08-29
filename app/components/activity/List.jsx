@@ -256,7 +256,7 @@ export default class List extends Component {
         avatar: ( <img src={ collection[i].user.avatar ? API_BASENAME + '/getavatar?fid=' + collection[i].user.avatar : no_avatar } className='no-avatar'/> ),
         summary: (
           <div>
-            <span style={ { marginRight: '5px' } }><b>{ user.id === collection[i].user.id ? '我' : collection[i].user.name }</b></span>
+            <span style={ { marginRight: '5px' } }><b>{ user.id === collection[i].user.id ? ' me' : collection[i].user.name }</b></span>
 
             { collection[i].event_key == 'create_link'     && <span>Issue linked</span> }
             { collection[i].event_key == 'del_link'        && <span>Issue unlinked</span> }

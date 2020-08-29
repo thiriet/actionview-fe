@@ -96,7 +96,7 @@ class ResetPwd extends Component {
       <div className='login-panel'>
         <div className='login-form'>
           <div style={ { textAlign: 'center', marginTop: '15px', fontSize: '19px', marginBottom: '20px' } }>
-            密码重置 
+            Reset password
           </div>
           { this.state.emailShow ?
           <form onSubmit={ handleSubmit(this.handleSubmit) }>
@@ -111,7 +111,7 @@ class ResetPwd extends Component {
               <FormControl disabled={ submitting } type='password' { ...new_password2 } placeholder='确认密码'/>
               { new_password2.touched && new_password2.error && <HelpBlock style={ { marginLeft: '5px' } }>{ new_password2.error }</HelpBlock> }
             </FormGroup>
-            <Button bsStyle='success' disabled={ invalid || submitting } type='submit'>{ submitting ? '重置中...' : '密码重置' }</Button>
+            <Button bsStyle='success' disabled={ invalid || submitting } type='submit'>{ submitting ? '重置中...' : 'Reset password' }</Button>
           </form>
           :
           <div className='reset-pwd-msg'>

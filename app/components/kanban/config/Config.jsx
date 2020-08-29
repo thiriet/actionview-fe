@@ -260,7 +260,7 @@ export default class Config extends Component {
             update={ edit }
             columns={ config.columns || [] } /> }
           { isAllowedEdit &&
-          <Button style={ { marginLeft: '10px' } } onClick={ () => { this.setState({ columnModalShow: true, columnNo: -1 }) } }>添加</Button> }
+          <Button style={ { marginLeft: '10px' } } onClick={ () => { this.setState({ columnModalShow: true, columnNo: -1 }) } }>Add</Button> }
         </div>
       )     
     }); 

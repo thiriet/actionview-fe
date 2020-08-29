@@ -71,7 +71,7 @@ export default class MultiOperateNotify extends Component {
     const { i18n: { errMsg }, operate, loading, collection, ids } = this.props;
     let operateTitle = '';
     if (operate === 'renew') {
-      operateTitle = '密码重置';
+      operateTitle = 'Reset password';
     } else if (operate === 'del') {
       operateTitle = '用户删除'
     } else if (operate === 'validate') {

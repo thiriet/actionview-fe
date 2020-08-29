@@ -269,7 +269,7 @@ export default class List extends Component {
               { collection[i].status === 'active' && <MenuItem eventKey='invalidate'>disable</MenuItem> }
               { collection[i].status === 'invalid' && <MenuItem eventKey='validate'>enable</MenuItem> }
               <MenuItem eventKey='del'>Delete</MenuItem>
-              { collection[i].status === 'active' && <MenuItem eventKey='renew'>重置密码</MenuItem> }
+              { collection[i].status === 'active' && <MenuItem eventKey='renew'>Renew</MenuItem> }
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === collection[i].id) ? 'loading' : 'hide' }/>
           </div>
@@ -352,10 +352,10 @@ export default class List extends Component {
               </DropdownButton>
             </span> }
             <span style={ { float: 'left', marginRight: '20px' } }>
-              <Button onClick={ () => { this.setState({ createModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-plus'></i>&nbsp;New 用户</Button>
+              <Button onClick={ () => { this.setState({ createModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-plus'></i>&nbsp;New user</Button>
             </span>
             <span style={ { float: 'left', width: '20%' } }>
-              <Button onClick={ () => { this.setState({ importModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-users'></i>&nbsp;批量导入</Button>
+              <Button onClick={ () => { this.setState({ importModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-users'></i>&nbsp;Batch import</Button>
             </span>
           </FormGroup>
         </div>
@@ -364,9 +364,9 @@ export default class List extends Component {
             <div className='info-icon'><i className='fa fa-info-circle'></i></div>
             <div className='info-content'>
               <span>
-                请使用邮箱登录，若在系统配置里配置了“默认登录邮箱域名”可使用邮箱前缀登录。<br/>
-                New 或批量导入of用户，默认密码是：actionview。从外部用户目录同步过来of用户，密码和用户目录of保持一致。<br/>
-                从外部用户目录同步过来of用户，不能对其做任何操作。
+                Please log in with your mailbox. If the "default login mailbox domain name" is configured in the system configuration, you can log in with the mailbox prefix.<br/>
+                New or batch import of users, the default password is: actionview. The of user is synchronized from the external user directory, and the password is consistent with the user directory of.<br/>
+                Synchronization of users come from an external user directory, you can not do anything.
               </span>
             </div>
           </div>
@@ -380,8 +380,8 @@ export default class List extends Component {
             <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
             <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
             <TableHeaderColumn dataField='email'>E-mail</TableHeaderColumn>
-            <TableHeaderColumn dataField='groups'>所属组</TableHeaderColumn>
-            <TableHeaderColumn dataField='directory'>目录</TableHeaderColumn>
+            <TableHeaderColumn dataField='groups'>Group</TableHeaderColumn>
+            <TableHeaderColumn dataField='directory'>Directory</TableHeaderColumn>
             <TableHeaderColumn width='60' dataField='operation'/>
           </BootstrapTable>
           { this.state.editModalShow && 

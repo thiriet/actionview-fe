@@ -267,7 +267,7 @@ export default class Preview extends Component {
           <span style={ { color: '#707070' } }>Total <a href='#' onClick={ (e) => { e.preventDefault(); this.setState({ versionViewShow: true }); } }>{ item.versions.length }</a> 个版本。</span> }
 
           { item.checkin && !_.isEmpty(item.checkin) && 
-          <span style={ { marginLeft: '8px', color: '#f0ad4e' } }><i className='fa fa-lock'></i> 该文档被{ item.checkin.user ? (item.checkin.user.id == user.id ? '我' : (item.checkin.user.name || '')) : '' }于 { item.checkin.at ? moment.unix(item.checkin.at).format('YYYY/MM/DD HH:mm') : '' } 锁定。</span> }
+          <span style={ { marginLeft: '8px', color: '#f0ad4e' } }><i className='fa fa-lock'></i> 该文档被{ item.checkin.user ? (item.checkin.user.id == user.id ? ' me' : (item.checkin.user.name || '')) : '' }于 { item.checkin.at ? moment.unix(item.checkin.at).format('YYYY/MM/DD HH:mm') : '' } 锁定。</span> }
 
           { itemLoading && (this.state.operate == 'checkin' || this.state.operate == 'checkout') ? 
           <span>

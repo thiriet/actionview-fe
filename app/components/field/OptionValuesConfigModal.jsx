@@ -187,7 +187,7 @@ export default class OptionValuesConfigModal extends Component {
                   onKeyDown={ (e) => { if (e.keyCode == '13') { e.preventDefault(); this.add(); } } }/>
               </Col>
               {/* <Col sm={ 1 }>
-                <Button bsStyle='link' style={ { marginLeft: '-25px' } } onClick={ this.add.bind(this) } disabled={ !enableAdd }>添加</Button>
+                <Button bsStyle='link' style={ { marginLeft: '-25px' } } onClick={ this.add.bind(this) } disabled={ !enableAdd }>Add</Button>
               </Col> */}
             </FormGroup>
           </Form>

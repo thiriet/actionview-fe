@@ -115,8 +115,8 @@ export default class Header extends Component {
       { key: 'report', name: 'Report' },
       { key: 'document', name: 'Document' },
       { key: 'wiki', name: 'Wiki' },
-      { key: 'team', name: '项目成员' },
-      { key: 'config', name: '配置概要' },
+      { key: 'team', name: 'Team' },
+      { key: 'config', name: 'Configuration summary' },
       { key: 'type', name: 'Type' },
       { key: 'workflow', name: 'Workflow' },
       { key: 'field', name: 'Field' },
@@ -126,9 +126,9 @@ export default class Header extends Component {
       { key: 'state', name: 'Status' },
       { key: 'role', name: 'Role' },
       { key: 'events', name: 'Events' },
-      { key: 'options', name: '选项' },
-      { key: 'labels', name: '标签管理' },
-      { key: 'integrations', name: '外部用户' },
+      { key: 'options', name: 'Options' },
+      { key: 'labels', name: 'Labels management' },
+      { key: 'integrations', name: 'External users' },
       { key: 'webhooks', name: 'Webhooks' }
     ];
 
@@ -177,13 +177,13 @@ export default class Header extends Component {
     } else if (patten5.exec(pathname)) {
       modulename = 'User management';
     } else if (patten10.exec(pathname)) {
-      modulename = '用户组管理';
+      modulename = 'User group management';
     } else if (patten11.exec(pathname)) {
       modulename = 'Directory';
     } else if (patten8.exec(pathname)) {
-      modulename = '系统设置';
+      modulename = 'System settings';
     } else if (patten9.exec(pathname)) {
-      modulename = '个人设置';
+      modulename = 'Personal settings';
     } else if (patten12.exec(pathname)) {
       modulename = 'Log';
     } else if (patten13.exec(pathname)) {

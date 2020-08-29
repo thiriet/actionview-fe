@@ -42,7 +42,7 @@ export default class OperateNotify extends Component {
     if (ecode === 0) {
       notify.show(msg, 'success', 2000);    
     } else {
-      notify.show('操作失败。', 'error', 2000);    
+      notify.show('Operation failed。', 'error', 2000);
     }
   }
 
@@ -55,9 +55,9 @@ export default class OperateNotify extends Component {
     const { operate, data } = this.props;
     let operateTitle = '';
     if (operate === 'renew') {
-      operateTitle = '密码重置';
+      operateTitle = 'Reset password';
     } else if (operate === 'del') {
-      operateTitle = '用户删除'
+      operateTitle = 'Delete user'
     } else if (operate === 'validate') {
       operateTitle = 'User enabled';
     } else if (operate === 'invalidate') {
@@ -73,20 +73,20 @@ export default class OperateNotify extends Component {
         </Modal.Header>
         { operate === 'renew' && 
         <Modal.Body>
-          是否将【{ data.first_name }】该用户密码重置？
+          Reset password for user: { data.first_name }？
         </Modal.Body> }
         { operate === 'del' && 
         <Modal.Body>
-          用户被删除后，项目中of用户也同时被删除。<br/>
-          是否删除【{ data.first_name }】该用户？
+          After a user is deleted, the user of the project is also deleted<br/>
+          Delete user: { data.first_name }？
         </Modal.Body> }
         { operate === 'validate' &&
         <Modal.Body>
-          是否启用【{ data.first_name }】该用户？
+          Enable the user { data.first_name }？
         </Modal.Body> }
         { operate === 'invalidate' &&
         <Modal.Body>
-          是否禁用【{ data.first_name }】该用户？
+          Disable the user { data.first_name }？
         </Modal.Body> }
         <Modal.Footer>
           <Button onClick={ this.confirm }>Submit</Button>
