@@ -80,9 +80,9 @@ export default class EditModal extends Component {
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyDown={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body>
           <FormGroup controlId='formControlsText'>
-            <ControlLabel><span className='txt-impt'>*</span>Role名</ControlLabel>
+            <ControlLabel><span className='txt-impt'>*</span>Role name</ControlLabel>
             <FormControl type='hidden' { ...id }/>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Role名'/>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Role name'/>
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>Description</ControlLabel>

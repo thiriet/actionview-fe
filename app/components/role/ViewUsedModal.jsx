@@ -45,9 +45,9 @@ export default class ViewUsedModal extends Component {
           { !loading &&
           <div style={ { marginBottom: '10px' } }>
             { projects.length > 0 ?
-            <span>Total有应用项目 <strong>{ projects.length }</strong> 个</span>
+            <span>a total of<strong>{ projects.length }</strong> applications</span>
             :
-            <span>暂无项目应用</span> }
+            <span>No application in project</span> }
           </div> }
           { !loading && projects.length > 0 &&
           <Table condensed hover responsive>

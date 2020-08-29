@@ -218,7 +218,7 @@ export default class List extends Component {
         <BootstrapTable data={ roles } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name' width='300'>Role</TableHeaderColumn>
-          <TableHeaderColumn dataField='permissions'>权限集</TableHeaderColumn>
+          <TableHeaderColumn dataField='permissions'>Permission set</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
         { this.state.editModalShow && 
