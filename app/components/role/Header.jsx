@@ -38,7 +38,7 @@ export default class Header extends Component {
         <div className='info-col'>
           <div className='info-icon'><i className='fa fa-info-circle'></i></div>
           { isSysConfig && <div className='info-content'>You can only delete a role that is not effective in the project.</div> }
-          { !isSysConfig && <div className='info-content'>若权限配置修改后，用户权限没有生效，请刷新页面。</div> }
+          { !isSysConfig && <div className='info-content'>If the user permissions do not take effect after the permission configuration is modified, please refresh the page.</div> }
         </div>
         { this.state.createModalShow && 
           <CreateModal 
