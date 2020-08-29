@@ -11,11 +11,11 @@ const validate = (values, props) => {
   if (!values.name) {
     errors.name = 'Required';
   } else if (_.findIndex(props.collection || [], { name: values.name }) !== -1) {
-    errors.name = '该步骤已存在';
+    errors.name = 'The step already exists';
   }
 
   if (!values.state) {
-    errors.state = '必选';
+    errors.state = 'required';
   }
   return errors;
 };
@@ -100,7 +100,7 @@ export default class CreateModal extends Component {
               simpleValue 
               value={ state.value } 
               onChange={ newValue => { state.onChange(newValue); if (!name.value) { name.onChange(_.find(stateOptions, { value: newValue }).label2) } } } 
-              placeholder='请选择状态' 
+              placeholder='Please select status'
               clearable={ false } 
               searchable={ false }/>
           </FormGroup>

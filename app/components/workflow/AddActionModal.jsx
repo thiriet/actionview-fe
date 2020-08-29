@@ -32,7 +32,7 @@ const validate = (values) => {
     errors.name = 'Required';
   }
   if (!values.destStep) {
-    errors.destStep = '必选';
+    errors.destStep = 'required';
   }
   //if (!values.screen) {
   //  errors.name = 'Required';
@@ -383,20 +383,20 @@ export default class AddActionModal extends Component {
                       <option value='' key=''>Select permission</option>
                       { permissionOptions.map( permissionOption => <option value={ permissionOption.id } key={ permissionOption.id }>{ permissionOption.name }</option> ) }
                     </select>
-                    <span>of用户才能执行此动作</span>
+                    <span>to perform this action</span>
                   </li>
                   <li>
                     <Checkbox disabled={ submitting } value='belongsToRole'/>
-                    <span>只有属于项目Role</span>
+                    <span>Only members of the Role and of the project</span>
                     <select
                       value={ this.state.roleParam }
                       onChange={ (e) => this.setState({ roleParam: e.target.value }) }
                       disabled={ (_.indexOf(this.state.conditions, 'belongsToRole') !== -1 && !submitting) ? false : true }
                       style={ _.indexOf(this.state.conditions, 'belongsToRole') !== -1 ? selectEnableStyles : selectDisabledStyles }> 
-                      <option value='' key=''>请选择Role</option>
+                      <option value='' key=''>Select Role</option>
                       { roleOptions.map( roleOption => <option value={ roleOption.id } key={ roleOption.id }>{ roleOption.name }</option> ) }
                     </select>
-                    <span>of成员才能执行此动作</span>
+                    <span>can perform this action</span>
                   </li>
                 </ui>
               </CheckboxGroup>
@@ -409,7 +409,7 @@ export default class AddActionModal extends Component {
                 <ui className='list-unstyled clearfix cond-list'>
                   <li>
                     <Checkbox disabled={ submitting } value='setResolution'/>
-                    <span>问题of</span><b>Resolution</b><span> will be set to</span>
+                    <span>Issue </span><b>Resolution</b><span> will be set to</span>
                     <select
                       value={ this.state.resolutionParam }
                       onChange={ (e) => this.setState({ resolutionParam: e.target.value }) }
@@ -453,7 +453,7 @@ export default class AddActionModal extends Component {
                   </li>
                   <li style={ { display: 'none' } }>
                     <Checkbox disabled={ submitting } value='updIssue'/>
-                    <span>更新问题属性</span>
+                    <span>Update issue attributes</span>
                   </li>
                   {/*
                   <li>

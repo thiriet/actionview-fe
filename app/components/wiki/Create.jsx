@@ -113,7 +113,7 @@ export default class Create extends Component {
             style={ { display: 'inline-block', marginRight: '20px', marginLeft: '10px' } }>
             通知项目成员
           </Checkbox>
-          <Button disabled={ loading || !this.state.name } bsStyle='success' onClick={ this.handleSubmit }>保存</Button>
+          <Button disabled={ loading || !this.state.name } bsStyle='success' onClick={ this.handleSubmit }>Save</Button>
           <Button bsStyle='link' disabled={ loading } onClick={ this.handleCancel }>Cancel</Button>
         </div>
       </div>

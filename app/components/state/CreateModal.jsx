@@ -17,7 +17,7 @@ const validate = (values, props) => {
   }
 
   if (!values.category) {
-    errors.category = '必选';
+    errors.category = 'required';
   }
 
   return errors;

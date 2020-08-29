@@ -21,7 +21,7 @@ const validate = (values, props) => {
       errors.bgColor = '格式错误';
     }
   } else {
-    errors.bgColor = '必选';
+    errors.bgColor = 'required';
   }
   return errors;
 };

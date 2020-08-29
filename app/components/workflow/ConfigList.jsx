@@ -163,7 +163,7 @@ export default class ConfigList extends Component {
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='step'>step</TableHeaderColumn>
           <TableHeaderColumn dataField='state'>Associated status</TableHeaderColumn>
-          <TableHeaderColumn dataField='actions' width='260'>动作(id)</TableHeaderColumn>
+          <TableHeaderColumn dataField='actions' width='260'>Action(id)</TableHeaderColumn>
           <TableHeaderColumn width='300' dataField='operation'/>
         </BootstrapTable>
         { this.state.addActionModalShow && 

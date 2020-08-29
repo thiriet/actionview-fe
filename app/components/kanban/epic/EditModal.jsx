@@ -21,7 +21,7 @@ const validate = (values, props) => {
       errors.bgColor = '格式错误';
     }
   } else {
-    errors.bgColor = '必选';
+    errors.bgColor = 'required';
   }
   return errors;
 };
@@ -59,7 +59,7 @@ export default class EditModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('更新完成。', 'success', 2000);
+      notify.show('update completed', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }

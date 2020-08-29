@@ -67,19 +67,19 @@ export default class List extends Component {
           <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue' }>All issues</Link></span>
           <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?resolution=Unresolved' }>Unresolved</Link></span>
           <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?assignee=me&resolution=Unresolved' }>Assigned to me</Link></span>
-          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?reporter=me' }>我报告of</Link></span>
+          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?reporter=me' }>Reported by me</Link></span>
           <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?watcher=me' }>Watcher</Link></span>
-          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?created_at=2w' }>最近增加of</Link></span>
-          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?updated_at=2w' }>最近更新of</Link></span>
-          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?resolved_at=2w' }>最近解决of</Link></span>
-          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?closed_at=2w' }>最近关闭of</Link></span>
+          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?created_at=2w' }>Recently created</Link></span>
+          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?updated_at=2w' }>Recently updated</Link></span>
+          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?resolved_at=2w' }>Recently resolved</Link></span>
+          <span style={ filterStyle }><Link to={ '/project/' + project.key + '/issue?closed_at=2w' }>Recently closed</Link></span>
         </div> }
         <Panel
           style={ { height: '320px' } }
           header={ 
             <div>
               <span>{ 'Date range：' + (options.twoWeeksAgo || '') + ' ~ Now' }</span>
-              <span className='exchange-icon' onClick={ () => this.setState({ pulseShowModel: this.state.pulseShowModel == 'detail' ? 'charts' : 'detail' }) } title='切换'><i className='fa fa-retweet'></i></span>
+              <span className='exchange-icon' onClick={ () => this.setState({ pulseShowModel: this.state.pulseShowModel == 'detail' ? 'charts' : 'detail' }) } title='Switch'><i className='fa fa-retweet'></i></span>
             </div> }>
           { this.state.pulseShowModel == 'detail' &&
           <Table responsive hover>
@@ -166,7 +166,7 @@ export default class List extends Component {
           header={ 
             <div>
               <span>Opened issues：By reported</span>
-              <span className='exchange-icon' onClick={ () => this.setState({ assigneeShowModel: this.state.assigneeShowModel == 'detail' ? 'percentage' : 'detail' }) } title='切换'><i className='fa fa-retweet'></i></span>
+              <span className='exchange-icon' onClick={ () => this.setState({ assigneeShowModel: this.state.assigneeShowModel == 'detail' ? 'percentage' : 'detail' }) } title='Switch'><i className='fa fa-retweet'></i></span>
             </div> }>
           { data.assignee_unresolved_issues && !_.isEmpty(data.assignee_unresolved_issues) ?
           <Table responsive hover>
@@ -247,7 +247,7 @@ export default class List extends Component {
           header={ 
             <div>
               <span>Opened issues：By priority</span>
-              <span className='exchange-icon' onClick={ () => this.setState({ priorityShowModel: this.state.priorityShowModel == 'detail' ? 'percentage' : 'detail' }) } title='切换'><i className='fa fa-retweet'></i></span>
+              <span className='exchange-icon' onClick={ () => this.setState({ priorityShowModel: this.state.priorityShowModel == 'detail' ? 'percentage' : 'detail' }) } title='Switch'><i className='fa fa-retweet'></i></span>
             </div> }>
           { data.priority_unresolved_issues && !_.isEmpty(data.priority_unresolved_issues) ?
           <Table responsive hover>
@@ -343,7 +343,7 @@ export default class List extends Component {
           header={ 
             <div>
               <span>Opened issues：By module</span>
-              <span className='exchange-icon' onClick={ () => this.setState({ moduleShowModel: this.state.moduleShowModel == 'detail' ? 'percentage' : 'detail' }) } title='切换'><i className='fa fa-retweet'></i></span>
+              <span className='exchange-icon' onClick={ () => this.setState({ moduleShowModel: this.state.moduleShowModel == 'detail' ? 'percentage' : 'detail' }) } title='Switch'><i className='fa fa-retweet'></i></span>
             </div> }>
           { data.module_unresolved_issues && !_.isEmpty(data.module_unresolved_issues) ?
           <Table responsive hover>

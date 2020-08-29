@@ -41,7 +41,7 @@ export default class Header extends Component {
             <i className='fa fa-info-circle'></i>
           </div>
           <div className='info-content'>
-            Can only delete the type that is not associated with a issue{ isSysConfig && '（Each project includes a custom question types）' }of工作流。
+            Can only delete the type that is not associated with a issue{ isSysConfig && '（Each project includes a custom question types）' } of workflow.
           </div>
         </div>
         { this.state.createModalShow && 

@@ -44,11 +44,11 @@ export default class CreateModal extends Component {
   async handleSubmit() {
     const { values, create, close } = this.props;
     const initialAction = { id : 0, name: 'initial_action', results: [{ step: 1, status: 'Underway' }] };
-    const ecode = await create(_.assign(values, { contents : { initial_action: initialAction, steps: [ { id: 1, name: '开始', state: 'Open', actions: [] } ] } }));
+    const ecode = await create(_.assign(values, { contents : { initial_action: initialAction, steps: [ { id: 1, name: 'Start', state: 'Open', actions: [] } ] } }));
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('New 完成，请配置流程。', 'success', 2000);
+      notify.show('New is complete，please configure the process.', 'success', 2000);
       const { data, goConfig } = this.props;
       if (!_.isEmpty(data)) {
         goConfig(data.id);
