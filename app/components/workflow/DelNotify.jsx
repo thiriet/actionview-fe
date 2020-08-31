@@ -20,9 +20,9 @@ export default class DelNotify extends Component {
     close();
     const ecode = await del(data.id);
     if (ecode === 0) {
-      notify.show('删除完成。', 'success', 2000);
+      notify.show('Deletion complete', 'success', 2000);
     } else {
-      notify.show('删除失败。', 'error', 2000);
+      notify.show('Deletion failed', 'error', 2000);
     }
   }
 
@@ -37,14 +37,14 @@ export default class DelNotify extends Component {
     return (
       <Modal show onHide={ this.cancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>删除工作流 - { data.name }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>Delete workflow - { data.name }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          确认要删除此工作流？
+          Confirm to delete this workflow？
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ this.confirm }>确定</Button>
-          <Button bsStyle='link' onClick={ this.cancel }>取消</Button>
+          <Button onClick={ this.confirm }>Submit</Button>
+          <Button bsStyle='link' onClick={ this.cancel }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

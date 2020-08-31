@@ -37,7 +37,7 @@ export default class Create extends Component {
     if (ecode === 0) {
       setRouterNotifyFlg(false);
       this.setState({ ecode: 0 });
-      notify.show('新建完成。', 'success', 2000);
+      notify.show('New 完成。', 'success', 2000);
       goto('list');
     } else {
       this.setState({ ecode: ecode });
@@ -101,7 +101,7 @@ export default class Create extends Component {
     return (
       <div style={ { marginTop: '15px' } }>
         <div style={ { fontSize: '25px', fontWeight: 400, marginBottom: '5px' } }>
-          新建Wiki
+          New Wiki
         </div>
         <FormGroup validationState={ this.state.touched && !this.state.name && 'error' || null }>
           <InputGroup>
@@ -130,8 +130,8 @@ export default class Create extends Component {
             style={ { display: 'inline-block', marginRight: '20px', marginLeft: '10px' } }>
             通知项目成员
           </Checkbox>
-          <Button disabled={ loading || !this.state.name } bsStyle='success' onClick={ this.handleSubmit }>保存</Button>
-          <Button bsStyle='link' disabled={ loading } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ loading || !this.state.name } bsStyle='success' onClick={ this.handleSubmit }>Save</Button>
+          <Button bsStyle='link' disabled={ loading } onClick={ this.handleCancel }>Cancel</Button>
         </div>
       </div>
     );

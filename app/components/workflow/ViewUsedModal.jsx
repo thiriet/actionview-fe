@@ -35,7 +35,7 @@ export default class ViewUsedModal extends Component {
     return (
       <Modal show bsSize='large' onHide={ this.handleCancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>{ '查看项目应用 - ' + data.name }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>{ 'View project applications - ' + data.name }</Modal.Title>
         </Modal.Header>
         <Modal.Body style={ { height: '420px', overflow: 'auto' } }>
           { loading &&
@@ -45,16 +45,16 @@ export default class ViewUsedModal extends Component {
           { !loading &&
           <div style={ { marginBottom: '10px' } }>
             { projects.length > 0 ?
-            <span>共有应用项目 <strong>{ projects.length }</strong> 个</span>
+            <span>Project has a total of <strong>{ projects.length }</strong> application</span>
             :
-            <span>暂无项目应用</span> }
+            <span>No project application</span> }
           </div> }
           { !loading && projects.length > 0 &&
           <Table condensed hover responsive>
             <thead>
               <tr>
-                <th>项目名称</th>
-                <th>问题类型</th>
+                <th>Project name</th>
+                <th>Type</th>
               </tr>
             </thead>
             <tbody>
@@ -65,7 +65,7 @@ export default class ViewUsedModal extends Component {
                     { v.status === 'active' ?
                     <span><Link to={ '/project/' + v.key }>{ v.name }</Link></span>
                     :
-                    <span>{ v.name }(已关闭)</span> }
+                    <span>{ v.name }(Closed)</span> }
                   </td>
                   <td>
                     { v.status === 'active' ?
@@ -87,7 +87,7 @@ export default class ViewUsedModal extends Component {
           </Table> }
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ this.handleCancel }>关闭</Button>
+          <Button onClick={ this.handleCancel }>Close</Button>
         </Modal.Footer>
       </Modal>
     );

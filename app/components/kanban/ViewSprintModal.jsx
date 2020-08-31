@@ -66,7 +66,7 @@ export default class ViewSprintModal extends Component {
           <Table hover responsive>
             <thead>
               <tr>
-                <th>经办人</th>
+                <th>Assignee</th>
                 <th>问题数</th>
                 <th>故事点数</th>
               </tr>
@@ -74,7 +74,7 @@ export default class ViewSprintModal extends Component {
             <tbody>
               { unassignedIssues.issue_count > 0 &&
               <tr>
-                <td>未分配的</td>
+                <td>未分配of</td>
                 <td>{ unassignedIssues.issue_count }</td>
                 <td>{ unassignedIssues.story_points }</td>
               </tr> }
@@ -102,7 +102,7 @@ export default class ViewSprintModal extends Component {
           </Table> }
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ this.handleCancel }>关闭</Button>
+          <Button onClick={ this.handleCancel }>Close</Button>
         </Modal.Footer>
       </Modal>
     );

@@ -32,7 +32,7 @@ export default class List extends Component {
       editRowId: '',
       createFolderShow: false,
       searchShow: false,
-      name: '', 
+      name: '',
       myfavorite: ''
     };
 
@@ -93,7 +93,7 @@ export default class List extends Component {
   cancelEditRow() {
     this.setState({ 
       editRowId: '',
-      createFolderShow: false 
+      createFolderShow: false
     });
   }
 
@@ -256,28 +256,28 @@ export default class List extends Component {
       toggleDirectory
     } = this.props;
 
-    const { 
-      createFolderShow, 
+    const {
+      createFolderShow,
       searchShow,
-      editRowId, 
-      hoverRowId, 
-      operateShow 
+      editRowId,
+      hoverRowId,
+      operateShow
     } = this.state;
 
     const updatedat_options = [
-      { value: '1w', label: '1周内' },
-      { value: '2w', label: '2周内' },
-      { value: '1m', label: '1个月内' },
-      { value: '2m', label: '2个月内' }
+      { value: '1w', label: '1w' },
+      { value: '2w', label: '2w' },
+      { value: '1m', label: '1m' },
+      { value: '2m', label: '2m' }
     ];
 
     const sortOptions = [
-      { value: 'create_time_asc', label: '创建时间 ↑' },
-      { value: 'create_time_desc', label: '创建时间 ↓' },
-      { value: 'update_time_asc', label: '更新时间 ↑' },
-      { value: 'update_time_desc', label: '更新时间 ↓' },
-      { value: 'name_asc', label: '名称 ↑' },
-      { value: 'name_desc', label: '名称 ↓' }
+      { value: 'create_time_asc', label: 'Creation date ↑' },
+      { value: 'create_time_desc', label: 'Creation date ↓' },
+      { value: 'update_time_asc', label: 'Update date ↑' },
+      { value: 'update_time_desc', label: 'Update date ↓' },
+      { value: 'name_asc', label: 'Name ↑' },
+      { value: 'name_desc', label: 'Name ↓' }
     ];
 
     let contents = '';
@@ -364,9 +364,9 @@ export default class List extends Component {
               onClick={ this.cancelEditRow }
               onSelect={ this.operateSelect.bind(this) }>
               <MenuItem eventKey='favorite'>{ v.favorited ? '取消收藏' : '收藏' }</MenuItem>
-              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='rename'>重命名</MenuItem> } 
+              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='rename'>重命名</MenuItem> }
               { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='move'>移动</MenuItem> } 
-              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='del'>删除</MenuItem> }
+              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='del'>Delete</MenuItem> }
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === v.id) ? 'loading' : 'hide' }/>
           </div>)
@@ -389,7 +389,7 @@ export default class List extends Component {
               <i className='fa fa-paperclip'></i>
             </span> } 
             { !_.isEmpty(files[i].checkin) &&
-            <span style={ { marginLeft: '8px', color: '#f0ad4e' } } title={ '该文档被' + ( files[i].checkin.user ? (files[i].checkin.user.id == user.id ? '我' : (files[i].checkin.user.name || '')) : '' ) + '于 ' + ( files[i].checkin.at ? moment.unix(files[i].checkin.at).format('YYYY/MM/DD HH:mm') : '' ) + ' 锁定。' }><i className='fa fa-lock'></i></span> }
+            <span style={ { marginLeft: '8px', color: '#f0ad4e' } } title={ '该文档被' + ( files[i].checkin.user ? (files[i].checkin.user.id == user.id ? ' me' : (files[i].checkin.user.name || '')) : '' ) + '于 ' + ( files[i].checkin.at ? moment.unix(files[i].checkin.at).format('YYYY/MM/DD HH:mm') : '' ) + ' 锁定。' }><i className='fa fa-lock'></i></span> }
             <span style={ { float: 'right' } }>
               { files[i].parent != directory && 
               <Link to={ '/project/' + project_key + '/wiki' + (files[i].parent == '0' ? '' : ('/' + files[i].parent) ) }><span style={ { marginRight: '15px', float: 'left' } }>打开目录</span></Link> }
@@ -416,13 +416,13 @@ export default class List extends Component {
               id={ `dropdown-basic-${i}` } 
               onClick={ this.cancelEditRow }
               onSelect={ this.operateSelect.bind(this) }>
-              <MenuItem eventKey='edit'>编辑</MenuItem>
-              <MenuItem eventKey='favorite'>{ files[i].favorited ? '取消收藏' : '收藏' }</MenuItem>
-              { _.isEmpty(files[i].checkin) && <MenuItem eventKey='checkin'>加锁</MenuItem> }
-              { !_.isEmpty(files[i].checkin) && (files[i].checkin.user.id == user.id || (options.permissions && options.permissions.indexOf('manage_project') !== -1)) && <MenuItem eventKey='checkout'>解锁</MenuItem> }
-              <MenuItem eventKey='copy'>复制</MenuItem>
-              <MenuItem eventKey='move'>移动</MenuItem>
-              <MenuItem eventKey='del'>删除</MenuItem>
+              <MenuItem eventKey='edit'>Edit</MenuItem>
+              <MenuItem eventKey='favorite'>{ files[i].favorited ? 'Unfavorite' : 'Favorites' }</MenuItem>
+              { _.isEmpty(files[i].checkin) && <MenuItem eventKey='checkin'>Lock</MenuItem> }
+              { !_.isEmpty(files[i].checkin) && (files[i].checkin.user.id == user.id || (options.permissions && options.permissions.indexOf('manage_project') !== -1)) && <MenuItem eventKey='checkout'>Unlock</MenuItem> }
+              <MenuItem eventKey='copy'>Copy</MenuItem>
+              <MenuItem eventKey='move'>Move</MenuItem>
+              <MenuItem eventKey='del'>Delete</MenuItem>
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === files[i].id) ? 'loading' : 'hide' }/>
           </div>
@@ -434,7 +434,7 @@ export default class List extends Component {
     if (indexLoading) {
       opts.noDataText = ( <div><img src={ img } className='loading'/></div> );
     } else {
-      opts.noDataText = '暂无数据显示。'; 
+      opts.noDataText = 'No data displayed';
     } 
 
     opts.onRowMouseOver = this.onRowMouseOver.bind(this);
@@ -462,7 +462,7 @@ export default class List extends Component {
               <span style={ { float: 'right' } }>
                 <DropdownButton
                   pullRight
-                  title='排序'
+                  title='Sort'
                   id='basic-nav-dropdown-project'
                   onSelect={ this.sortChange.bind(this) }>
                     { _.map(sortOptions, (v, i) =>
@@ -496,7 +496,7 @@ export default class List extends Component {
                   checked={ this.state.myfavorite == '1' }
                   onClick={ () => { this.state.myfavorite = (this.state.myfavorite == '1' ? '' : '1'); this.reload(); } }
                   style={ { display: 'inline-block' } }>
-                  我收藏的 
+                  我收藏的
                 </Checkbox>
               </span>
               <span style={ { float: 'right', width: '165px', marginRight: '10px' } }>
@@ -505,13 +505,13 @@ export default class List extends Component {
                   style={ { height: '36px' } }
                   value={ this.state.name }
                   onChange={ (e) => { this.setState({ name: e.target.value }) } }
-                  onKeyDown={ (e) => { if (e.keyCode == '13') { this.reload(); } } } 
+                  onKeyDown={ (e) => { if (e.keyCode == '13') { this.reload(); } } }
                   placeholder='标题名称查询...' />
               </span>
               <span style={ { float: 'right', width: '110px', marginRight: '10px' } }>
                 <Select
                   simpleValue
-                  placeholder='更新时间'
+                  placeholder='Update date'
                   value={ this.state.updated_at }
                   onChange={ this.updatedAtChange.bind(this) }
                   options={ updatedat_options }/>
@@ -522,14 +522,14 @@ export default class List extends Component {
         <div>
           <BootstrapTable data={ rows } bordered={ false } hover options={ opts } trClassName='tr-middle'>
             <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='name'>名称</TableHeaderColumn>
+            <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
             <TableHeaderColumn width='60' dataField='operation'/>
           </BootstrapTable>
           { !indexLoading && directory === '0' && _.isEmpty(query) && (!options.home || !options.home.id) && options.permissions && options.permissions.indexOf('manage_project') !== -1 &&
           <div className='info-col'>
             <div className='info-icon'><i className='fa fa-info-circle'></i></div>
             <div className='info-content'>
-              <span>为了项目成员能更好的理解此项目，建议增加 <a href='#' onClick={ (e) => { e.preventDefault(); goto('new', '', { home: 1 }); } }>Home</a> 页面。</span>
+              <span>为了项目成员能更好of理解此项目，建议增加 <a href='#' onClick={ (e) => { e.preventDefault(); goto('new', '', { home: 1 }); } }>Home</a> 页面。</span>
             </div>
           </div> }
           { !indexLoading && options.home && options.home.id && _.isEmpty(query) &&

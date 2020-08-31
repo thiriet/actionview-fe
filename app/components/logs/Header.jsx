@@ -229,25 +229,25 @@ export default class Header extends Component {
   render() {
     const moduleOptions = [
       { value: 'login', label: '登录' },
-      { value: 'issue', label: '问题' },
-      { value: 'activity', label: '活动' },
-      { value: 'kanban', label: '看板' },
-      { value: 'version', label: '版本' },
-      { value: 'module', label: '模块' },
-      { value: 'document', label: '文档' },
+      { value: 'issue', label: 'Issue' },
+      { value: 'activity', label: 'Activity' },
+      { value: 'kanban', label: 'Kanban' },
+      { value: 'version', label: 'Version' },
+      { value: 'module', label: 'Module' },
+      { value: 'document', label: 'Document' },
       { value: 'wiki', label: 'Wiki' },
-      { value: 'team', label: '成员' },
-      { value: 'type', label: '问题类型' },
-      { value: 'state', label: '状态' },
+      { value: 'team', label: 'Team' },
+      { value: 'type', label: 'Type' },
+      { value: 'state', label: 'Status' },
       { value: 'workflow', label: '流程' },
-      { value: 'field', label: '字段' },
-      { value: 'screen', label: '界面' },
-      { value: 'prioiry', label: '优先级' },
-      { value: 'resolution', label: '解决结果' },
-      { value: 'role', label: '角色权限' },
-      { value: 'events', label: '通知事件' },
-      { value: 'labels', label: '标签管理' },
-      { value: 'integrations', label: '外部用户' },
+      { value: 'field', label: 'Field' },
+      { value: 'screen', label: 'Screen' },
+      { value: 'prioiry', label: 'Priority' },
+      { value: 'resolution', label: 'Resolution' },
+      { value: 'role', label: 'Role' },
+      { value: 'events', label: 'Events' },
+      { value: 'labels', label: 'Labels management' },
+      { value: 'integrations', label: 'External users' },
       { value: 'webhooks', label: 'Webhooks' }
     ]; 
 
@@ -271,7 +271,7 @@ export default class Header extends Component {
         horizontal>
         <FormGroup>
           <Col sm={ 1 } componentClass={ ControlLabel }>
-            时间 
+            Date
           </Col>
           <Col sm={ 5 }>
             <div style={ { width: '47%', display: 'inline-block', float: 'left' } }>
@@ -281,7 +281,7 @@ export default class Header extends Component {
                 dateFormat={ 'YYYY/MM/DD' }
                 timeFormat={ false }
                 closeOnSelect={ true }
-                inputProps={ { placeholder: '请选择' } }
+                inputProps={ { placeholder: 'set value' } }
                 value={ this.state.start_time }
                 onChange={ (newValue) => { this.startTimeChange(newValue); } }/>
             </div>
@@ -295,13 +295,13 @@ export default class Header extends Component {
                 dateFormat={ 'YYYY/MM/DD' }
                 timeFormat={ false }
                 closeOnSelect={ true }
-                inputProps={ { placeholder: '请选择' } }
+                inputProps={ { placeholder: 'set value' } }
                 value={ this.state.end_time }
                 onChange={ (newValue) => { this.endTimeChange(newValue); } }/>
             </div>
           </Col>
           <Col sm={ 1 } componentClass={ ControlLabel }>
-            用户
+            User
           </Col>
           <Col sm={ 5 }>
             <Select.Async
@@ -318,7 +318,7 @@ export default class Header extends Component {
         { this.state.isExtended &&
         <FormGroup>
           <Col sm={ 1 } componentClass={ ControlLabel }>
-            项目
+            Project
           </Col>
           <Col sm={ 5 }>
             <Select.Async
@@ -332,12 +332,12 @@ export default class Header extends Component {
               placeholder='输入项目名称或健值'/>
           </Col>
           <Col sm={ 1 } componentClass={ ControlLabel }>
-            模块
+            Module
           </Col>
           <Col sm={ 2 }>
             <Select
               simpleValue
-              placeholder='模块'
+              placeholder='Module'
               value={ this.state.module }
               onChange={ this.moduleChange.bind(this) }
               options={ moduleOptions }/>
@@ -395,9 +395,9 @@ export default class Header extends Component {
             <div style={ { float: 'right', marginBottom: '5px', marginTop: '-5px' } }>
               <Button bsStyle='link' onClick={ this.reset.bind(this) }><i className='fa fa-undo'></i> 重置</Button>
               { this.state.isExtended ? 
-                <Button bsStyle='link' onClick={ () => { this.setState({ isExtended: false }) } }>收起 <i className='fa fa-angle-double-up'></i></Button>
+                <Button bsStyle='link' onClick={ () => { this.setState({ isExtended: false }) } }>Collapse <i className='fa fa-angle-double-up'></i></Button>
                 :
-                <Button bsStyle='link' onClick={ () => { this.setState({ isExtended: true }) } }>更多 <i className='fa fa-angle-double-down'></i></Button> }
+                <Button bsStyle='link' onClick={ () => { this.setState({ isExtended: true }) } }>More <i className='fa fa-angle-double-down'></i></Button> }
             </div>
           </Col>
         </FormGroup>

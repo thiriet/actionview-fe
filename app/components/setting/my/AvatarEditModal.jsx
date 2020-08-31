@@ -51,7 +51,7 @@ export default class AvatarEditModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('设置完成。', 'success', 2000);
+      notify.show('Setup complete', 'success', 2000);
       const { data } = this.props;
       if (data && data.avatar) {
         updAvatar(data.avatar);
@@ -84,7 +84,7 @@ export default class AvatarEditModal extends Component {
               选择头像
               <input type='file' onChange={ this.onChange.bind(this) }/>
             </a> 
-            <span style={ { marginLeft: '20px', fontSize: '12px' } }>提示：不支持IE9及以下版本</span>
+            <span style={ { marginLeft: '20px', fontSize: '12px' } }>Hint：不支持IE9及以下版本</span>
           </div>
           <Form horizontal>
             <FormGroup controlId='formControlsText'>
@@ -111,8 +111,8 @@ export default class AvatarEditModal extends Component {
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !loading && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ loading ? 'loading' : 'hide' }/>
-          <Button disabled={ loading } onClick={ this.handleSubmit }>确定</Button>
-          <Button bsStyle='link' disabled={ loading } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ loading } onClick={ this.handleSubmit }>Submit</Button>
+          <Button bsStyle='link' disabled={ loading } onClick={ this.handleCancel }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

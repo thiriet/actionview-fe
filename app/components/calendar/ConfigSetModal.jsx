@@ -34,7 +34,7 @@ export default class ConfigSetModal extends Component {
     }));
     if (ecode === 0) {
       close();
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     }
     this.setState({ ecode: ecode });
   }
@@ -126,9 +126,9 @@ export default class ConfigSetModal extends Component {
           <Button 
             onClick={ this.confirm } 
             disabled={ loading || (this.state.mode === 'set' && !this.state.type) || !moment(this.state.start_time).isValid() || !moment(this.state.end_time).isValid() || moment(this.state.start_time) > moment(this.state.end_time) }>
-            确定
+            Submit
           </Button>
-          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel }>取消</Button>
+          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

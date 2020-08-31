@@ -17,11 +17,11 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      viewModalShow: false, 
-      editModalShow: false, 
+      viewModalShow: false,
+      editModalShow: false,
       delNotifyShow: false, 
       operateShow: false, 
-      hoverRowId: '' 
+      hoverRowId: ''
     };
     this.viewModalClose = this.viewModalClose.bind(this);
     this.editModalClose = this.editModalClose.bind(this);
@@ -173,15 +173,15 @@ export default class List extends Component {
         ),
         issues: (
           <ul style={ { marginBottom: '0px', paddingLeft: '0px', listStyle: 'none' } }>
-            <li>所有问题 - <Link to={ '/project/' + collection[i].project_key + '/issue?resolve_version=' + collection[i].id }>{ collection[i].all_cnt || 0 }</Link></li>
-            <li>未解决的 - <Link to={ '/project/' + collection[i].project_key + '/issue?resolution=Unresolved&resolve_version=' + collection[i].id }><span style={ { color: 'red' } }>{ collection[i].unresolved_cnt || 0 }</span></Link></li>
+            <li>All issues - <Link to={ '/project/' + collection[i].project_key + '/issue?resolve_version=' + collection[i].id }>{ collection[i].all_cnt || 0 }</Link></li>
+            <li>Unresolved - <Link to={ '/project/' + collection[i].project_key + '/issue?resolution=Unresolved&resolve_version=' + collection[i].id }><span style={ { color: 'red' } }>{ collection[i].unresolved_cnt || 0 }</span></Link></li>
           </ul>
         ),
         status: (
           <span>{ collection[i].status === 'released' ? <span style={ { color: '#009900' } } title='已发布'><i className='fa fa-check'></i></span> : '未发布' }</span>
         ),
         operation: (
-          options.permissions && options.permissions.indexOf('manage_project') !== -1 ? 
+          options.permissions && options.permissions.indexOf('manage_project') !== -1 ?
           <div>
             { operateShow && hoverRowId === collection[i].id && !itemLoading &&
             <DropdownButton 
@@ -192,11 +192,11 @@ export default class List extends Component {
               title={ node } 
               id={ `dropdown-basic-${i}` } 
               onSelect={ this.operateSelect.bind(this) }>
-              <MenuItem eventKey='view'>查看</MenuItem>
-              <MenuItem eventKey='edit'>编辑</MenuItem>
-              {/* collection[i].status == 'released' ? <MenuItem eventKey='unrelease'>取消发布</MenuItem> : <MenuItem eventKey='release'>发布</MenuItem> */}
-              { collection[i].status != 'released' && <MenuItem eventKey='release'>发布</MenuItem> }
-              <MenuItem eventKey='del'>删除</MenuItem>
+              <MenuItem eventKey='view'>View</MenuItem>
+              <MenuItem eventKey='edit'>Edit</MenuItem>
+              {/* collection[i].status == 'released' ? <MenuItem eventKey='unrelease'>Unrelease</MenuItem> : <MenuItem eventKey='release'>Release</MenuItem> */}
+              { collection[i].status != 'released' && <MenuItem eventKey='release'>Release</MenuItem> }
+              <MenuItem eventKey='del'>Delete</MenuItem>
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === collection[i].id) ? 'loading' : 'hide' }/>
           </div>
@@ -210,7 +210,7 @@ export default class List extends Component {
     if (indexLoading) {
       opts.noDataText = ( <div><img src={ img } className='loading'/></div> );
     } else {
-      opts.noDataText = '暂无数据显示。';
+      opts.noDataText = 'No data displayed';
     }
 
     opts.onRowMouseOver = this.onRowMouseOver.bind(this);
@@ -220,12 +220,12 @@ export default class List extends Component {
       <div style={ { marginBottom: '30px' } }>
         <BootstrapTable data={ versions } bordered={ false } hover options={ opts } trClassName='tr-middle'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='name'>名称</TableHeaderColumn>
-          <TableHeaderColumn dataField='start_time' width='120'>开始时间</TableHeaderColumn>
-          <TableHeaderColumn dataField='end_time' width='120'>完成时间</TableHeaderColumn>
-          <TableHeaderColumn dataField='released_time' width='120'>发布时间</TableHeaderColumn>
-          <TableHeaderColumn dataField='issues' width='150'>问题完成情况</TableHeaderColumn>
-          <TableHeaderColumn dataField='status' width='100'>状态</TableHeaderColumn>
+          <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
+          <TableHeaderColumn dataField='start_time' width='120'>Start date</TableHeaderColumn>
+          <TableHeaderColumn dataField='end_time' width='120'>End date</TableHeaderColumn>
+          <TableHeaderColumn dataField='released_time' width='120'>Release date</TableHeaderColumn>
+          <TableHeaderColumn dataField='issues' width='150'>Issue completion</TableHeaderColumn>
+          <TableHeaderColumn dataField='status' width='100'>Status</TableHeaderColumn>
           <TableHeaderColumn width='80' dataField='operation'/>
         </BootstrapTable>
         { !indexLoading && options.total && options.total > 0 ?
@@ -242,7 +242,7 @@ export default class List extends Component {
             show
             close={ this.viewModalClose }
             data={ selectedItem }/> }
-        { this.state.editModalShow && 
+        { this.state.editModalShow &&
           <EditModal 
             show 
             close={ this.editModalClose } 

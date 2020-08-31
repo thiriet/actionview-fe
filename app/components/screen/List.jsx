@@ -127,7 +127,7 @@ export default class List extends Component {
         id: collection[i].id,
         name:  (
           <div>
-            <span className='table-td-title'>{ collection[i].name }{ pkey !== '$_sys_$' && collection[i].project_key === '$_sys_$' && <span style={ { fontWeight: 'normal' } }> (全局)</span> }</span>
+            <span className='table-td-title'>{ collection[i].name }{ pkey !== '$_sys_$' && collection[i].project_key === '$_sys_$' && <span style={ { fontWeight: 'normal' } }> (Global)</span> }</span>
             { collection[i].description && <span className='table-td-desc'>{ collection[i].description }</span> }
           </div>
         ),
@@ -146,13 +146,13 @@ export default class List extends Component {
                 key={ i } 
                 id={ `dropdown-basic-${i}` } 
                 onSelect={ this.operateSelect.bind(this) }>
-                <MenuItem eventKey='6'>预览</MenuItem>
+                <MenuItem eventKey='6'>Preview</MenuItem>
                 { !isGlobal && <MenuItem eventKey='3'>界面配置</MenuItem> }
                 { !isGlobal && <MenuItem eventKey='4'>字段配置</MenuItem> }
-                <MenuItem eventKey='5'>复制</MenuItem>
-                { !isGlobal && <MenuItem eventKey='1'>编辑</MenuItem> }
-                { pkey === '$_sys_$' && <MenuItem eventKey='7'>查看项目应用</MenuItem> }
-                { !isGlobal && !collection[i].is_used && <MenuItem eventKey='2'>删除</MenuItem> }
+                <MenuItem eventKey='5'>Copy</MenuItem>
+                { !isGlobal && <MenuItem eventKey='1'>Edit</MenuItem> }
+                { pkey === '$_sys_$' && <MenuItem eventKey='7'>View project applications</MenuItem> }
+                { !isGlobal && !collection[i].is_used && <MenuItem eventKey='2'>Delete</MenuItem> }
               </DropdownButton>
             }
             <img src={ img } className={ itemLoading && selectedItem.id === collection[i].id ? 'loading' : 'hide' }/>
@@ -165,7 +165,7 @@ export default class List extends Component {
     if (indexLoading) {
       opts.noDataText = ( <div><img src={ img } className='loading'/></div> );
     } else {
-      opts.noDataText = '暂无数据显示。'; 
+      opts.noDataText = 'No data displayed'; 
     } 
 
     opts.onRowMouseOver = this.onRowMouseOver.bind(this);
@@ -175,8 +175,8 @@ export default class List extends Component {
       <div style={ { marginBottom: '30px' } }>
         <BootstrapTable data={ screens } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='name' >名称</TableHeaderColumn>
-          <TableHeaderColumn dataField='workflow'>应用工作流</TableHeaderColumn>
+          <TableHeaderColumn dataField='name' >Name</TableHeaderColumn>
+          <TableHeaderColumn dataField='workflow'>Application workflow</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
         { this.state.previewModalShow && 

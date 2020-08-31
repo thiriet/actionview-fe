@@ -59,14 +59,14 @@ export default class PreviewModal extends Component {
     return (
       <Modal show onHide={ close } backdrop='static' bsSize='large' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>工作流预览{ name ? (' - ' + name) : '' }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>Workflow preview{ name ? (' - ' + name) : '' }</Modal.Title>
         </Modal.Header>
         <Modal.Body style={ { maxHeight: '580px', overflow: 'auto' } }>
           <div className='mermaid' id='chart'/>
         </Modal.Body>
         <Modal.Footer>
-          <span style={ { float: 'left', marginTop: '7px' } }>提示：预览不支持IE</span>
-          <Button onClick={ close }>关闭</Button>
+          <span style={ { float: 'left', marginTop: '7px' } }>Hint：Preview does not support IE</span>
+          <Button onClick={ close }>Close</Button>
         </Modal.Footer>
       </Modal>
     );

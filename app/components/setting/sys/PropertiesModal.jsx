@@ -10,7 +10,7 @@ const img = require('../../../assets/images/loading.gif');
 const validate = (values, props) => {
   const errors = {};
   if (values.login_mail_domain && !/^[\w-]+([.][\w-]+)+$/.test(values.login_mail_domain)) {
-    errors.login_mail_domain = '格式有误';
+    errors.login_mail_domain = 'Incorrect format';
   }
   //if (values.enable_login_protection && !/^[1-9][0-9]*$/.test(values.enable_login_protection)) {
   //  errors.enable_login_protection = '必须输入正整数';
@@ -56,7 +56,7 @@ export default class PropertiesModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('设置完成。', 'success', 2000);
+      notify.show('Setup complete', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }
@@ -144,7 +144,7 @@ export default class PropertiesModal extends Component {
                 options={ [ { value: 1, label: '是' }, { value: 0, label: '否' } ] }
                 value={ allow_create_project.value || 0 }
                 onChange={ newValue => { allow_create_project.onChange(newValue) } }
-                placeholder='请选择'/>
+                placeholder='set value'/>
             </FormGroup>
             <FormGroup controlId='formControlsText' style={ { width: '45%', display: 'inline-block', float: 'right' } }>
               <ControlLabel>启用安全登录保护</ControlLabel>
@@ -156,7 +156,7 @@ export default class PropertiesModal extends Component {
                 options={ [ { value: 1, label: '是' }, { value: 0, label: '否' } ] }
                 value={ enable_login_protection.value || 0 }
                 onChange={ newValue => { enable_login_protection.onChange(newValue) } }
-                placeholder='请选择'/>
+                placeholder='set value'/>
             </FormGroup>
           </div>
           <div>
@@ -170,7 +170,7 @@ export default class PropertiesModal extends Component {
                 options={ dayOptions }
                 value={ week2day.value }
                 onChange={ newValue => { week2day.onChange(newValue) } }
-                placeholder='请选择'/>
+                placeholder='set value'/>
             </FormGroup>
             <FormGroup style={ { width: '45%', display: 'inline-block', float: 'right' } }>
               <ControlLabel>每天有效工作时间(小时)</ControlLabel>
@@ -182,7 +182,7 @@ export default class PropertiesModal extends Component {
                 options={ hourOptions }
                 value={ day2hour.value }
                 onChange={ newValue => { day2hour.onChange(newValue) } }
-                placeholder='请选择'/>
+                placeholder='set value'/>
             </FormGroup>
           </div>
           <div>
@@ -196,15 +196,15 @@ export default class PropertiesModal extends Component {
                 options={ logsSaveOptions }
                 value={ logs_save_duration.value || '6m' }
                 onChange={ newValue => { logs_save_duration.onChange(newValue) } }
-                placeholder='请选择'/>
+                placeholder='set value'/>
             </FormGroup>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !submitting && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ submitting ? 'loading' : 'hide' }/>
-          <Button disabled={ !dirty || submitting || invalid } type='submit'>确定</Button>
-          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ !dirty || submitting || invalid } type='submit'>Submit</Button>
+          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>Cancel</Button>
         </Modal.Footer>
         </form>
       </Modal>

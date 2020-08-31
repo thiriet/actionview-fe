@@ -58,7 +58,7 @@ export default class LayoutFieldConfigModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }
@@ -104,8 +104,8 @@ export default class LayoutFieldConfigModal extends Component {
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !submitting && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ submitting ? 'loading' : 'hide' }/>
-          <Button disabled={ submitting || !dirty } type='submit'>确定</Button>
-          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel.bind(this) }>取消</Button>
+          <Button disabled={ submitting || !dirty } type='submit'>Submit</Button>
+          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel.bind(this) }>Cancel</Button>
         </Modal.Footer>
         </form>
       </Modal>

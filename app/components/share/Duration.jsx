@@ -10,12 +10,12 @@ export default class Duration extends Component {
     super(props);
     this.state = { 
       options: !_.isEmpty(props.options) ? props.options : [ 'fixed', 'current_variable', 'inside_variable', 'outside_variable' ],
-      mode: 'fixed', 
+      mode: 'fixed',
       start_time: '', 
       end_time: '', 
-      current_variable: '', 
-      inside_variable: '', 
-      outside_variable: '' 
+      current_variable: '',
+      inside_variable: '',
+      outside_variable: ''
     };
     this.getValue = this.getValue.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -85,29 +85,29 @@ export default class Duration extends Component {
   render() {
 
     const modeOptions = [
-      { value: 'fixed', label: '固定时间段' }, 
-      { value: 'current_variable', label: '当前时间段' }, 
-      { value: 'inside_variable', label: '时间段之内' }, 
-      { value: 'outside_variable', label: '时间段之外' }
+      { value: 'fixed', label: 'Fixed date' },
+      { value: 'current_variable', label: 'Current time period' },
+      { value: 'inside_variable', label: 'Start date' },
+      { value: 'outside_variable', label: 'End date' }
     ];
 
     const variable_durations = [
-      { value: '1w', label: '1周' },
-      { value: '2w', label: '2周' },
-      { value: '3w', label: '3周' },
-      { value: '1m', label: '1个月' },
-      { value: '2m', label: '2个月' },
-      { value: '3m', label: '3个月' },
-      { value: '4m', label: '4个月' },
-      { value: '5m', label: '5个月' },
-      { value: '6m', label: '6个月' },
-      { value: '7m', label: '7个月' },
-      { value: '8m', label: '8个月' },
-      { value: '9m', label: '9个月' },
-      { value: '10m', label: '10个月' },
-      { value: '11m', label: '11个月' },
-      { value: '1y', label: '1年' },
-      { value: '2y', label: '2年' }
+      { value: '1w', label: '1w' },
+      { value: '2w', label: '2w' },
+      { value: '3w', label: '3w' },
+      { value: '1m', label: '1m' },
+      { value: '2m', label: '2m' },
+      { value: '3m', label: '3m' },
+      { value: '4m', label: '4m' },
+      { value: '5m', label: '5m' },
+      { value: '6m', label: '6m' },
+      { value: '7m', label: '7m' },
+      { value: '8m', label: '8m' },
+      { value: '9m', label: '9m' },
+      { value: '10m', label: '10m' },
+      { value: '11m', label: '11m' },
+      { value: '1y', label: '1y' },
+      { value: '2y', label: '2y' }
     ];
 
     const current_variable_durations = [
@@ -129,7 +129,7 @@ export default class Duration extends Component {
             clearable={ false }
             value={ this.state.mode }
             onChange={ (newValue) => { this.setState({ mode: newValue }) } }
-            placeholder='请选择'/>
+            placeholder='set value'/>
         </div> }
         { this.state.mode === 'current_variable' &&
         <div style={ { width: '40%', display: 'inline-block', float: 'left' } }>
@@ -153,7 +153,7 @@ export default class Duration extends Component {
             clearable={ true }
             value={ this.state.outside_variable || null }
             onChange={ (newValue) => { this.onChange({ outside_variable: newValue }); } }
-            placeholder='请选择'/>
+            placeholder='set value'/>
         </div> }
         { this.state.mode === 'outside_variable' && <span style={ { float: 'left', marginTop: '8px', marginLeft: '2px' } }>之外</span> }
         { this.state.mode === 'inside_variable' &&
@@ -166,7 +166,7 @@ export default class Duration extends Component {
             clearable={ true }
             value={ this.state.inside_variable || null }
             onChange={ (newValue) => { this.onChange({ inside_variable: newValue }); } }
-            placeholder='请选择'/>
+            placeholder='set value'/>
         </div> }
         { this.state.mode === 'inside_variable' && <span style={ { float: 'left', marginTop: '8px', marginLeft: '2px' } }>之内</span> }
         { this.state.mode === 'fixed' &&
@@ -177,7 +177,7 @@ export default class Duration extends Component {
             dateFormat={ 'YYYY/MM/DD' }
             timeFormat={ false }
             closeOnSelect={ true }
-            inputProps={ { placeholder: '请选择' } }
+            inputProps={ { placeholder: 'set value' } }
             value={ this.state.start_time }
             onChange={ (newValue) => { this.onChange({ start_time: newValue }); } }/>
         </div> }
@@ -191,7 +191,7 @@ export default class Duration extends Component {
             timeFormat={ false }
             closeOnSelect={ true }
             input={ true }
-            inputProps={ { placeholder: '请选择' } }
+            inputProps={ { placeholder: 'set value' } }
             value={ this.state.end_time }
             onChange={ (newValue) => { this.onChange({ end_time: newValue }); } }/>
         </div> }

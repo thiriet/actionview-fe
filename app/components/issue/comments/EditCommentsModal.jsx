@@ -71,9 +71,9 @@ export default class EditCommentsModal extends Component {
       if (ecode === 0) {
         close();
         if (data.id) {
-          notify.show('已更新回复。', 'success', 2000);
+          notify.show('Reply updated.', 'success', 2000);
         } else {
-          notify.show('已添加回复。', 'success', 2000);
+          notify.show('Reply added.', 'success', 2000);
         }
       }
     } else {
@@ -81,7 +81,7 @@ export default class EditCommentsModal extends Component {
       this.setState({ ecode });
       if (ecode === 0) {
         close();
-        notify.show('已更新备注。', 'success', 2000);
+        notify.show('Comments have been updated.', 'success', 2000);
       }
     }
   }
@@ -163,9 +163,9 @@ export default class EditCommentsModal extends Component {
 
     let title = '';
     if (data.id) {
-      title = '编辑备注';
+      title = 'Edit comments';
     } else {
-      title = '回复备注';
+      title = 'Reply to comments';
     }
 
     return (
@@ -182,14 +182,14 @@ export default class EditCommentsModal extends Component {
               onChange={ (e) => { this.setState({ contents: e.target.value }) } }
               onKeyDown={ (e) => { if (e.keyCode == '13' && e.ctrlKey && this.state.oldContents != this.state.contents) { this.confirm(); } } }
               value={ this.state.contents } 
-              placeholder='支持@项目成员，Ctrl+Enter发布备注。'/>
+              placeholder='Support @Project members, Ctrl+Enter to post comments.'/>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !loading && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ loading ? 'loading' : 'hide' }/>
-          <Button disabled={ this.state.oldContents === this.state.contents || loading } onClick={ this.confirm }>确定</Button>
-          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel }>取消</Button>
+          <Button disabled={ this.state.oldContents === this.state.contents || loading } onClick={ this.confirm }>Submit</Button>
+          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

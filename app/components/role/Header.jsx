@@ -32,13 +32,13 @@ export default class Header extends Component {
       <div>
         <div style={ { marginTop: '5px' } }>
           <Button className='create-btn' onClick={ () => { this.setState({ createModalShow: true }); } }>
-            <i className='fa fa-plus'></i>&nbsp;新建角色
+            <i className='fa fa-plus'></i>&nbsp;New Role
           </Button>
         </div>
         <div className='info-col'>
           <div className='info-icon'><i className='fa fa-info-circle'></i></div>
-          { isSysConfig && <div className='info-content'>只能删除在项目中未生效的角色。</div> }
-          { !isSysConfig && <div className='info-content'>若权限配置修改后，用户权限没有生效，请刷新页面。</div> }
+          { isSysConfig && <div className='info-content'>You can only delete a role that is not effective in the project.</div> }
+          { !isSysConfig && <div className='info-content'>If the user permissions do not take effect after the permission configuration is modified, please refresh the page.</div> }
         </div>
         { this.state.createModalShow && 
           <CreateModal 

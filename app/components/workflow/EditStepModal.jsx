@@ -9,7 +9,7 @@ const img = require('../../assets/images/loading.gif');
 const validate = (values, props) => {
   const errors = {};
   if (!values.name) {
-    errors.name = '必填';
+    errors.name = 'Required';
   } else if (values.name.indexOf(' ') !== -1 || values.name.indexOf('%') !== -1) {
     errors.name = '步骤名称不能有空格或者%';
   } else if (props.data.name !== values.name && _.findIndex(props.collection || [], { name: values.name }) !== -1) {
@@ -17,7 +17,7 @@ const validate = (values, props) => {
   }
 
   if (!values.state) {
-    errors.state = '必选';
+    errors.state = 'required';
   }
   return errors;
 };
@@ -91,14 +91,14 @@ export default class CreateModal extends Component {
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <FormControl type='hidden' { ...id }/>
             <ControlLabel>
-              <span className='txt-impt'>*</span>步骤名
+              <span className='txt-impt'>*</span>step name
             </ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='步骤名'/>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='step name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>
-              <span className='txt-impt'>*</span>链接状态
+              <span className='txt-impt'>*</span>Link status
             </ControlLabel>
             <Select 
               disabled={ submitting } 
@@ -106,14 +106,14 @@ export default class CreateModal extends Component {
               simpleValue 
               value={ state.value } 
               onChange={ newValue => { state.onChange(newValue) } } 
-              placeholder='请选择状态' 
+              placeholder='Select status'
               clearable={ false } 
               searchable={ false }/>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button disabled={ !dirty || submitting || invalid } type='submit'>确定</Button>
-          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ !dirty || submitting || invalid } type='submit'>Submit</Button>
+          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>Cancel</Button>
         </Modal.Footer>
         </form>
       </Modal>

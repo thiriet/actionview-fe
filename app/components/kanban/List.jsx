@@ -25,11 +25,11 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailBarShow: false, 
+      detailBarShow: false,
       detailClosing: false,
       selectVersionShow: false,
       viewSprintShow: false, 
-      editSprintShow: false, 
+      editSprintShow: false,
       publishSprintShow: false,
       completeSprintShow: false,
       deleteSprintShow: false,
@@ -480,12 +480,12 @@ export default class List extends Component {
                 { mode == 'issue' && curKanban.type == 'kanban' && i == columns.length - 1 && columnIssues[i].length > 0 && selectedFilter == 'all' && options.permissions && options.permissions.indexOf('manage_project') !== -1 &&
                 <a href='#' style={ { float: 'right' } } 
                   onClick={ (e) => { e.preventDefault(); this.setState({ selectVersionShow: true }); } }>
-                  发布...
+                  Release...
                 </a> }
                 { mode == 'issue' && curKanban.type == 'scrum' && i == columns.length - 1 && selectedFilter == 'all' && options.permissions && options.permissions.indexOf('manage_project') !== -1 && _.findIndex(sprints, { status: 'active' }) !== -1 &&
                 <a href='#' style={ { float: 'right' } } 
                   onClick={ (e) => { e.preventDefault(); this.setState({ completeSprintShow: true }); } }>
-                  完成...
+                  Completed...
                 </a> }
                 { mode == 'backlog' && options.permissions && options.permissions.indexOf('manage_project') !== -1 && i != 0 &&
                 <div style={ { float: 'right' } }>
@@ -497,12 +497,12 @@ export default class List extends Component {
                     onSelect={ this.operateBacklog.bind(this) }
                     pullRight>
                     <MenuItem disabled={ columnIssues[i].length <= 0 } eventKey={ 'view-' +  v.no }>工作量查看</MenuItem> 
-                    <MenuItem eventKey={ 'edit-' +  v.no }>编辑</MenuItem> 
+                    <MenuItem eventKey={ 'edit-' +  v.no }>编辑</MenuItem>
                     { v.status == 'waiting' && i == 1 && <MenuItem disabled={ columnIssues[i].length <= 0 } eventKey={ 'publish-' +  v.no }>启动</MenuItem> }
-                    { v.status == 'waiting' && <MenuItem eventKey={ 'delete-' + v.no }>删除</MenuItem> }
+                    { v.status == 'waiting' && <MenuItem eventKey={ 'delete-' + v.no }>Delete</MenuItem> }
                   </DropdownButton> 
                 </div> }
-                { mode == 'backlog' && v.status == 'active' && <span> - <b>活动中</b></span> }
+                { mode == 'backlog' && v.status == 'active' && <span> - <b>active</b></span> }
               </li> ) ) }
             </ul>
           </div>
@@ -565,7 +565,7 @@ export default class List extends Component {
         </div> }
         { !_.isEmpty(curKanban) && !indexLoading && mode == 'issue' && curKanban.type == 'scrum' && _.findIndex(sprints, { status: 'active' }) === -1 && collection.length <= 0 &&
         <div style={ { marginTop: '20px', width: '100%', textAlign: 'center' } }>
-          <span>暂无活动的Sprint</span>
+          <span>暂无活动ofSprint</span>
         </div> }
         { this.state.detailBarShow &&
           <DetailBar
@@ -638,7 +638,7 @@ export default class List extends Component {
             doAction={ doAction }
             user={ user }/> }
         { this.state.workflowScreenShow &&
-          <CreateModal 
+          <CreateModal
             show
             close={ this.workflowScreenModalClose.bind(this) }
             options={ options }
@@ -651,7 +651,7 @@ export default class List extends Component {
             isFromWorkflow={ true }
             i18n={ i18n }/> }
         { this.state.selectVersionShow &&
-          <ReleaseVersionModal 
+          <ReleaseVersionModal
             show
             options={ options }
             close={ this.selectVersionModalClose.bind(this) }
@@ -659,14 +659,14 @@ export default class List extends Component {
             releasedIssues={ _.last(columnIssues) || [] } 
             i18n={ i18n }/> }
         { this.state.publishSprintShow &&
-          <PublishSprintModal 
+          <PublishSprintModal
             show
             close={ this.publishSprintModalClose.bind(this) }
             sprint={ _.find(sprints, { no: this.state.curSprintNo }) }
             publish={ publishSprint }
             i18n={ i18n }/> }
         { this.state.deleteSprintShow &&
-          <DelSprintNotify 
+          <DelSprintNotify
             show
             close={ this.deleteSprintModalClose.bind(this) }
             data={ _.find(sprints, { no: this.state.curSprintNo }) }
@@ -674,7 +674,7 @@ export default class List extends Component {
             loading={ sprintLoading }
             i18n={ i18n }/> }
         { this.state.completeSprintShow &&
-          <CompleteSprintNotify 
+          <CompleteSprintNotify
             show
             close={ this.completeSprintModalClose.bind(this) }
             loading={ sprintLoading }
@@ -684,7 +684,7 @@ export default class List extends Component {
             completedIssues={ _.last(columnIssues) || [] }
             i18n={ i18n }/> }
         { this.state.moveIssueShow &&
-          <MoveIssueNotify 
+          <MoveIssueNotify
             show
             close={ this.moveIssueModalClose.bind(this) }
             loading={ sprintLoading }
@@ -692,16 +692,16 @@ export default class List extends Component {
             values={ this.state.movedData }
             i18n={ i18n }/> }
         { this.state.viewSprintShow &&
-          <ViewSprintModal 
+          <ViewSprintModal
             show
             close={ this.viewSprintModalClose.bind(this) }
             sprintNo={ this.state.curSprintNo }
             sprints={ sprints }
             collection={ collection }/> }
         { this.state.editSprintShow &&
-          <EditSprintModal 
+          <EditSprintModal
             show
-            update={ updateSprint } 
+            update={ updateSprint }
             close={ this.editSprintModalClose.bind(this) }
             data={ _.find(sprints, { no: this.state.curSprintNo }) }
             i18n={ i18n }/> }

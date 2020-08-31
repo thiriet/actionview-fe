@@ -106,7 +106,7 @@ export default class List extends Component {
           <span
             className='report-button report-edit-button'
             onClick={ () => { this.setState({ selectedBlock: v, searchConfigShow: true }) } }
-            title='编辑顺序'>
+            title='Edit order'>
             <i className='fa fa-pencil'></i>
           </span> }
           <span
@@ -183,7 +183,7 @@ export default class List extends Component {
         { this.state.searchConfigShow &&
           <FilterConfigModal
             show
-            title={ blockTitles[this.state.selectedBlock] + ' - 过滤器管理' }
+            title={ blockTitles[this.state.selectedBlock] + ' - Filter management' }
             close={ () => { this.setState({ searchConfigShow: false }) } }
             filters={ filters[this.state.selectedBlock] }
             config={ this.edit.bind(this) }

@@ -278,8 +278,8 @@ export default class Preview extends Component {
           </a> }
           { (!isCheckin || (isCheckin && item.checkin.user.id === user.id)) && !(this.state.operate === 'delete' && itemLoading) &&
           <span style={ { float: 'right' } }>
-            <Button style={ { marginRight: '5px' } } disabled={ itemLoading } onClick={ this.edit.bind(this) }><i className='fa fa-pencil'></i> 编辑</Button>
-            <Button bsStyle='link' style={ { fontSize: '14px', marginRight: '5px' } } disabled={ itemLoading } onClick={ () => { this.setState({ operate: 'delete', delNotifyShow: true }); } }>删除</Button>
+            <Button style={ { marginRight: '5px' } } disabled={ itemLoading } onClick={ this.edit.bind(this) }><i className='fa fa-pencil'></i> Edit</Button>
+            <Button bsStyle='link' style={ { fontSize: '14px', marginRight: '5px' } } disabled={ itemLoading } onClick={ () => { this.setState({ operate: 'delete', delNotifyShow: true }); } }>Delete</Button>
           </span> }
           { this.state.operate === 'delete' && itemLoading &&
            <span style={ { float: 'right', marginRight: '10px' } }>
@@ -294,15 +294,15 @@ export default class Preview extends Component {
         <div style={ { lineHeight: 2, borderBottom: '1px solid #e6ebf1', paddingLeft: '5px', paddingBottom: '10px', fontSize: '12px' } }>
           <span>创建者：{ item.creator && item.creator.name || '' }，</span>
           { isNewestVer ? 
-          <span style={ { color: '#707070' } }>该版本为最新版，{ item.editor && item.editor.name ? item.editor.name : (item.creator && item.creator.name || '') }于 { item.updated_at ? moment.unix(item.updated_at).format('YYYY/MM/DD HH:mm') : moment.unix(item.created_at).format('YYYY/MM/DD HH:mm') } 编辑。</span>
+          <span style={ { color: '#707070' } }>该版本为最新版，{ item.editor && item.editor.name ? item.editor.name : (item.creator && item.creator.name || '') }于 { item.updated_at ? moment.unix(item.updated_at).format('YYYY/MM/DD HH:mm') : moment.unix(item.created_at).format('YYYY/MM/DD HH:mm') } Edit。</span>
           :
-          <span style={ { color: '#707070' } }>当前版本 - { item.version }，{ item.editor && item.editor.name || '' }于 { item.updated_at ? moment.unix(item.updated_at).format('YYYY/MM/DD HH:mm') : '' } 编辑。</span> }
+          <span style={ { color: '#707070' } }>当前版本 - { item.version }，{ item.editor && item.editor.name || '' }于 { item.updated_at ? moment.unix(item.updated_at).format('YYYY/MM/DD HH:mm') : '' } Edit。</span> }
 
           { item.versions && item.versions.length > 1 &&
-          <span style={ { color: '#707070' } }>共 <a href='#' onClick={ (e) => { e.preventDefault(); this.setState({ versionViewShow: true }); } }>{ item.versions.length }</a> 个版本。</span> }
+          <span style={ { color: '#707070' } }>Total <a href='#' onClick={ (e) => { e.preventDefault(); this.setState({ versionViewShow: true }); } }>{ item.versions.length }</a> 个版本。</span> }
 
           { item.checkin && !_.isEmpty(item.checkin) && 
-          <span style={ { marginLeft: '8px', color: '#f0ad4e' } }><i className='fa fa-lock'></i> 该文档被{ item.checkin.user ? (item.checkin.user.id == user.id ? '我' : (item.checkin.user.name || '')) : '' }于 { item.checkin.at ? moment.unix(item.checkin.at).format('YYYY/MM/DD HH:mm') : '' } 锁定。</span> }
+          <span style={ { marginLeft: '8px', color: '#f0ad4e' } }><i className='fa fa-lock'></i> 该文档被{ item.checkin.user ? (item.checkin.user.id == user.id ? ' me' : (item.checkin.user.name || '')) : '' }于 { item.checkin.at ? moment.unix(item.checkin.at).format('YYYY/MM/DD HH:mm') : '' } 锁定。</span> }
 
           { itemLoading && (this.state.operate == 'checkin' || this.state.operate == 'checkout') ? 
           <span>
@@ -315,7 +315,7 @@ export default class Preview extends Component {
             { _.isEmpty(item.checkin) && 
             <span style={ { marginLeft: '8px' } }><a href='#' title='锁定' onClick={ (e) => { e.preventDefault(); this.checkin(); } }><i className='fa fa-lock'></i></a></span> }
 
-            <span style={ { marginLeft: '8px' } }><a href='#' onClick={ (e) => { e.preventDefault(); this.refresh(); } } title={ isNewestVer ? '刷新' : '最新版' }><i className='fa fa-refresh'></i></a></span>
+            <span style={ { marginLeft: '8px' } }><a href='#' onClick={ (e) => { e.preventDefault(); this.refresh(); } } title={ isNewestVer ? 'Refresh' : '最新版' }><i className='fa fa-refresh'></i></a></span>
           </span> }
           { item.favorited ?
             <span style={ { marginLeft: '10px', cursor: 'pointer', color: '#FF9900' } } title='点击取消收藏' onClick={ this.favorite.bind(this) }><i className='fa fa-star'></i></span>

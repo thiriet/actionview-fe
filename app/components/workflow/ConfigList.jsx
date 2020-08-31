@@ -141,10 +141,10 @@ export default class ConfigList extends Component {
         ),
         operation: (
           <div>
-            <Button bsStyle='link' onClick={ this.addAction.bind(this, collection[i].id) }>添加动作</Button>
-            <Button bsStyle='link' onClick={ this.delAction.bind(this, collection[i].id) }>删除动作</Button>
-            <Button bsStyle='link' onClick={ this.showStep.bind(this, collection[i].id) }>编辑</Button>
-            { collection[i].actions.length === 0 && collection[i].id !== 1 && _.indexOf(allDestSteps, collection[i].id) === -1 && <Button bsStyle='link' onClick={ this.delStepNotify.bind(this, collection[i].id) }>删除</Button> }
+            <Button bsStyle='link' onClick={ this.addAction.bind(this, collection[i].id) }>Add action</Button>
+            <Button bsStyle='link' onClick={ this.delAction.bind(this, collection[i].id) }>Delete action</Button>
+            <Button bsStyle='link' onClick={ this.showStep.bind(this, collection[i].id) }>Edit</Button>
+            { collection[i].actions.length === 0 && collection[i].id !== 1 && _.indexOf(allDestSteps, collection[i].id) === -1 && <Button bsStyle='link' onClick={ this.delStepNotify.bind(this, collection[i].id) }>Delete</Button> }
           </div>
         )
       });
@@ -154,16 +154,16 @@ export default class ConfigList extends Component {
     if (indexLoading) {
       opts.noDataText = ( <div><img src={ img } className='loading'/></div> );
     } else {
-      opts.noDataText = '暂无数据显示。'; 
+      opts.noDataText = 'No data displayed'; 
     } 
 
     return (
       <div style={ { marginBottom: '30px' } }>
         <BootstrapTable data={ steps } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='step'>步骤</TableHeaderColumn>
-          <TableHeaderColumn dataField='state'>关联状态</TableHeaderColumn>
-          <TableHeaderColumn dataField='actions' width='260'>动作(id)</TableHeaderColumn>
+          <TableHeaderColumn dataField='step'>step</TableHeaderColumn>
+          <TableHeaderColumn dataField='state'>Associated status</TableHeaderColumn>
+          <TableHeaderColumn dataField='actions' width='260'>Action(id)</TableHeaderColumn>
           <TableHeaderColumn width='300' dataField='operation'/>
         </BootstrapTable>
         { this.state.addActionModalShow && 

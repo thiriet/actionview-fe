@@ -105,9 +105,9 @@ export default class ConfigHeader extends Component {
 
     const ecode = await save({ contents : { initial_action: initialActions, steps: collection } });
     if (ecode === 0) {
-      notify.show('保存成功。', 'success', 2000);
+      notify.show('Saved successfuly.', 'success', 2000);
     } else {
-      notify.show('保存失败，请重试。', 'error', 2000);
+      notify.show('Save failed, please try again.', 'error', 2000);
     }
   }
 
@@ -136,43 +136,43 @@ export default class ConfigHeader extends Component {
       <div>
         { this.state.isChanged && collection.length > 0 && 
         <div className='workflow-config-notice'>
-          <span><i className='fa fa-exclamation-triangle'></i>&nbsp;&nbsp;配置已修改，需保存后才能生效。</span>
+          <span><i className='fa fa-exclamation-triangle'></i>&nbsp;&nbsp;The configuration has been modified and needs to be saved to take effect.</span>
           <Button 
             onClick={ this.saveConfig.bind(this) } 
             disabled={ saveLoading }>
-            <i className='fa fa-save'></i>&nbsp;保存
+            <i className='fa fa-save'></i>&nbsp;Save
           </Button>
           <Button
             bsStyle='link'
             onClick={ this.cancelConfig.bind(this) } >
-            取消修改 
+            Cancel edit
           </Button>
           <img src={ img } className={ saveLoading ? 'loading' : 'hide' }/>
         </div> }
         <div style={ { marginTop: '5px' } }>
           <Link to={ pathname.substr(0, pathname.lastIndexOf('/')) }>
-            <Button className='create-btn'><i className='fa fa-reply'></i>&nbsp;返回</Button>
+            <Button className='create-btn'><i className='fa fa-reply'></i>&nbsp;Back</Button>
           </Link>
           <Button 
             className='create-btn' 
             onClick={ () => { this.setState({ previewModalShow: true }); } } 
             disabled={ collection.length <= 0 }>
-            <i className='fa fa-search-plus'></i>&nbsp;预览
+            <i className='fa fa-search-plus'></i>&nbsp;Preview
           </Button>
           <Button 
             className='create-btn' 
             onClick={ () => { this.setState({ createStepModalShow: true }); } }>
-            <i className='fa fa-plus'></i>&nbsp;新建步骤
+            <i className='fa fa-plus'></i>&nbsp;New step
           </Button>
           <span style={ { float: 'right', marginTop: '20px', marginRight: '10px', fontWeight: 'bold' } }>{ workflowName }</span>
-          <span style={ { float: 'right', marginTop: '20px' } }>工作流名称：</span>
+          <span style={ { float: 'right', marginTop: '20px' } }>Workflow name：</span>
         </div>
         <div className='info-col'>
           <div className='info-icon'>
             <i className='fa fa-info-circle'></i>
           </div>
           <div className='info-content'>
-            配置工作流时应先新建工作流步骤，然后再添加相关的动作。<br/>每一步骤相关联的状态在状态模块中定义。
+            When configuring a workflow, you should first New workflow step, and then add related of actions. The state of each step is defined in the state module.
           </div>
         </div>
         { this.state.createStepModalShow && 

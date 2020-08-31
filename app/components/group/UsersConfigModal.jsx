@@ -33,7 +33,7 @@ export default class UsersConfigModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }
@@ -98,7 +98,7 @@ export default class UsersConfigModal extends Component {
     return (
       <Modal show onHide={ this.cancel.bind(this) } bsSize='large' backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>{ '用户配置 - ' + this.props.data.name }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>{ 'User configuration - ' + this.props.data.name }</Modal.Title>
         </Modal.Header>
         <Modal.Body style={ { height: '420px', overflow: 'auto' } }>
           <Form horizontal>
@@ -113,11 +113,11 @@ export default class UsersConfigModal extends Component {
                   valueKey='id'
                   labelKey='nameAndEmail'
                   loadOptions={ this.searchUsers }
-                  placeholder='请输入用户'/>
-                <Button style={ { float: 'right', marginTop: '15px' } } onClick={ this.add.bind(this) }>添加至用户列表 >> </Button>
+                  placeholder='enter a username'/>
+                <Button style={ { float: 'right', marginTop: '15px' } } onClick={ this.add.bind(this) }>Add to user list >> </Button>
               </Col>
               <Col sm={ 6 }>
-                { users.length > 0 && <div style={ { marginBottom: '8px' } }>用户列表 - { users.length }</div> }
+                { users.length > 0 && <div style={ { marginBottom: '8px' } }>User list - { users.length }</div> }
                 { users.length > 0 ?
                   users.map((op, i) => {
                     return (
@@ -139,8 +139,8 @@ export default class UsersConfigModal extends Component {
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !loading && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ loading ? 'loading' : 'hide' }/>
-          <Button disabled={ loading } onClick={ this.save.bind(this) }>确定</Button>
-          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel.bind(this) }>取消</Button>
+          <Button disabled={ loading } onClick={ this.save.bind(this) }>Submit</Button>
+          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel.bind(this) }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

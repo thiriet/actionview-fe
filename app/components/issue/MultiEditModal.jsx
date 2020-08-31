@@ -216,24 +216,24 @@ export default class MultiEditModal extends Component {
   }
 
   render() {
-    const { 
-      i18n: { errMsg }, 
-      options, 
-      issueIds, 
+    const {
+      i18n: { errMsg },
+      options,
+      issueIds,
       loading
     } = this.props;
 
-    const implicitFields = [ 
-      'title', 
-      'state', 
-      'reporter', 
-      'resolver', 
-      'closer', 
-      'created_at', 
-      'updated_at', 
-      'resolved_at', 
-      'closed_at', 
-      'sprints' 
+    const implicitFields = [
+      'title',
+      'state',
+      'reporter',
+      'resolver',
+      'closer',
+      'created_at',
+      'updated_at',
+      'resolved_at',
+      'closed_at',
+      'sprints'
     ];
 
     const allFields = [];
@@ -276,7 +276,7 @@ export default class MultiEditModal extends Component {
         </Modal.Header>
         { this.state.step == 1 ?
         <Modal.Body style={ { height: '580px', overflow: 'auto' } }>
-          <div>请选择要编辑字段：</div>
+          <div>Please select the field to edit：</div>
           <div style={ { padding: '5px 0px 0px 5px' } }>
             <CheckboxGroup name='field' value={ this.state.fields } onChange={ this.fieldsChanged.bind(this) }>
               <ui className='list-unstyled clearfix'>
@@ -287,7 +287,7 @@ export default class MultiEditModal extends Component {
         </Modal.Body>
         :
         <Modal.Body style={ { height: '580px', overflow: 'auto' } }>
-          <div style={ { margin: '5px 0px 15px 10px' } }>注：1、若选择字段的值不输入或不选择，该字段的值将被置为空；2、该操作可能会造成数据的不完整，请谨慎操作。</div>
+          <div style={ { margin: '5px 0px 15px 10px' } }>Note：1、若选择字段of值不输入或不选择，该字段of值将被置为空；2、该操作可能会造成数据of不完整，请谨慎操作。</div>
           <Form horizontal>
             { _.map(editFields, (v) => { 
               if (v.type === 'Text' || v.type === 'Url') {
@@ -381,7 +381,7 @@ export default class MultiEditModal extends Component {
                         disabled={ loading }
                         multi={ [ 'MultiSelect', 'MultiVersion', 'MultiUser', 'CheckboxGroup' ].indexOf(v.type) !== -1 }
                         onChange={ newValue => { this.setState({ values: { ...this.state.values, [v.key]: newValue } }) } }
-                        placeholder={ '选择' + v.name } />
+                        placeholder={ 'Select' + v.name } />
                     </Col>
                   </FormGroup> )
               } else if (v.type === 'DatePicker' || v.type === 'DateTimePicker') {
@@ -418,7 +418,7 @@ export default class MultiEditModal extends Component {
                         value={ this.state.values[v.key] || '' }
                         onChange={ (e) => { this.onChange(e.target.value, v); } }
                         onBlur={ (e) => { this.state.touched[v.key] = true; this.setState({ touched: this.state.touched }); } }
-                        placeholder='例如：3w 4d 12h 30m' />
+                        placeholder='E.g.：3w 4d 12h 30m' />
                     </Col>
                     <Col sm={ 6 } componentClass={ ControlLabel } style={ { textAlign: 'left' } }>
                       { this.state.touched[v.key] && this.state.errors[v.key] || '' }
@@ -429,12 +429,12 @@ export default class MultiEditModal extends Component {
           </Form>
         </Modal.Body> }
         <Modal.Footer>
-          <div style={ { float: 'left' } }>共选择问题 <b>{ issueIds.length }</b> 个。</div>
+          <div style={ { float: 'left' } }>Total选择问题 <b>{ issueIds.length }</b> 个。</div>
           <span className='ralign'>{ this.state.ecode !== 0 && !loading && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ loading ? 'loading' : 'hide' }/>
           <Button onClick={ this.goStep } disabled={ this.state.fields.length <= 0 || loading }>{ this.state.step == 2 ? '< 上一步' : '下一步 >' }</Button>
           { this.state.step == 2 && <Button onClick={ this.confirm } style={ { marginLeft: '10px' } } disabled={ loading || !_.isEmpty(this.state.errors) }>确 定</Button> }
-          <Button bsStyle='link' onClick={ this.cancel }>取消</Button>
+          <Button bsStyle='link' onClick={ this.cancel }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

@@ -9,13 +9,13 @@ const img = require('../../assets/images/loading.gif');
 const validate = (values, props) => {
   const errors = {};
   if (!values.name) {
-    errors.name = '必填';
+    errors.name = 'Required';
   } else if (_.findIndex(props.collection || [], { name: values.name }) !== -1) {
-    errors.name = '该步骤已存在';
+    errors.name = 'The step already exists';
   }
 
   if (!values.state) {
-    errors.state = '必选';
+    errors.state = 'required';
   }
   return errors;
 };
@@ -79,20 +79,20 @@ export default class CreateModal extends Component {
     return (
       <Modal show onHide={ this.handleCancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>新建步骤</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>New step</Modal.Title>
         </Modal.Header>
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyDown={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
             <ControlLabel>
-              <span className='txt-impt'>*</span>步骤名
+              <span className='txt-impt'>*</span>step name
             </ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='步骤名'/>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='step name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
             <ControlLabel>
-              <span className='txt-impt'>*</span>链接状态
+              <span className='txt-impt'>*</span>Link status
             </ControlLabel>
             <Select 
               disabled={ submitting } 
@@ -100,14 +100,14 @@ export default class CreateModal extends Component {
               simpleValue 
               value={ state.value } 
               onChange={ newValue => { state.onChange(newValue); if (!name.value) { name.onChange(_.find(stateOptions, { value: newValue }).label2) } } } 
-              placeholder='请选择状态' 
+              placeholder='Please select status'
               clearable={ false } 
               searchable={ false }/>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button disabled={ submitting || invalid } type='submit'>确定</Button>
-          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ submitting || invalid } type='submit'>Submit</Button>
+          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>Cancel</Button>
         </Modal.Footer>
         </form>
       </Modal>

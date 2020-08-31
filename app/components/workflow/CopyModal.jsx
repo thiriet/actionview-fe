@@ -10,7 +10,7 @@ const img = require('../../assets/images/loading.gif');
 const validate = (values) => {
   const errors = {};
   if (!values.name) {
-    errors.name = '必填';
+    errors.name = 'Required';
   }
   return errors;
 };
@@ -45,7 +45,7 @@ export default class CopyModal extends Component {
   componentWillMount() {
     const { initializeForm, data } = this.props;
     const copyData = _.clone(data);
-    _.extend(copyData, { name: '复制 - ' + data.name });
+    _.extend(copyData, { name: 'Copy - ' + data.name });
     initializeForm(copyData);
   }
 
@@ -55,7 +55,7 @@ export default class CopyModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('复制完成。', 'success', 2000);
+      notify.show('Copy is complete.', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }
@@ -86,26 +86,26 @@ export default class CopyModal extends Component {
     return (
       <Modal show onHide={ this.handleCancel } onEntered={ this.handleEntry } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>{ '复制工作流 - ' + data.name }</Modal.Title>
+          <Modal.Title id='contained-modal-title-la'>{ 'Copy workflow - ' + data.name }</Modal.Title>
         </Modal.Header>
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyDown={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body>
           <FormControl type='hidden' { ...id }/>
           <FormGroup controlId='formControlsText' validationState={ name.touched && name.error ? 'error' : null }>
-            <ControlLabel><span className='txt-impt'>*</span>新工作流名</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...name } placeholder='工作流名'/>
+            <ControlLabel><span className='txt-impt'>*</span>New workflow name</ControlLabel>
+            <FormControl disabled={ submitting } type='text' { ...name } placeholder='Workflow name'/>
             { name.touched && name.error && <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <FormGroup controlId='formControlsText'>
-            <ControlLabel>描述</ControlLabel>
-            <FormControl disabled={ submitting } type='text' { ...description } placeholder='描述内容'/>
+            <ControlLabel>Description</ControlLabel>
+            <FormControl disabled={ submitting } type='text' { ...description } placeholder='Description'/>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !submitting && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ submitting ? 'loading' : 'hide' }/>
-          <Button disabled={ submitting || invalid } type='submit'>确定</Button>
-          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ submitting || invalid } type='submit'>Submit</Button>
+          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>Cancel</Button>
         </Modal.Footer>
         </form>
       </Modal>

@@ -28,7 +28,7 @@ export default class List extends Component {
       operateShow: false, 
       photoIndex: 0,
       imgPreviewShow: false,
-      hoverRowId: '', 
+      hoverRowId: '',
       editRowId: ''
     };
 
@@ -192,9 +192,9 @@ export default class List extends Component {
       query 
     } = this.props;
 
-    const { 
-      editRowId, 
-      hoverRowId, 
+    const {
+      editRowId,
+      hoverRowId,
       operateShow,
       photoIndex,
       imgPreviewShow
@@ -286,9 +286,9 @@ export default class List extends Component {
               onSelect={ this.operateSelect.bind(this) }>
               <MenuItem eventKey='download'>下载</MenuItem>
               <MenuItem eventKey='favorite'>{ v.favorited ? '取消收藏' : '收藏' }</MenuItem>
-              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='rename'>重命名</MenuItem> } 
+              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='rename'>重命名</MenuItem> }
               { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='move'>移动</MenuItem> }
-              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='del'>删除</MenuItem> }
+              { options.permissions && options.permissions.indexOf('manage_project') !== -1 && <MenuItem eventKey='del'>Delete</MenuItem> }
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === v.id) ? 'loading' : 'hide' }/>
           </div>)
@@ -360,7 +360,7 @@ export default class List extends Component {
               <MenuItem eventKey='favorite'>{ files[i].favorited ? '取消收藏' : '收藏' }</MenuItem>
               { options.permissions && (options.permissions.indexOf('manage_project') !== -1 || files[i].uploader.id == user.id) && <MenuItem eventKey='rename'>重命名</MenuItem> }
               { options.permissions && (options.permissions.indexOf('manage_project') !== -1 || files[i].uploader.id == user.id) && <MenuItem eventKey='move'>移动</MenuItem> }
-              { options.permissions && (options.permissions.indexOf('manage_project') !== -1 || files[i].uploader.id == user.id) && <MenuItem eventKey='del'>删除</MenuItem> }
+              { options.permissions && (options.permissions.indexOf('manage_project') !== -1 || files[i].uploader.id == user.id) && <MenuItem eventKey='del'>Delete</MenuItem> }
             </DropdownButton> }
             <img src={ img } className={ (itemLoading && selectedItem.id === files[i].id) ? 'loading' : 'hide' }/>
           </div>
@@ -372,7 +372,7 @@ export default class List extends Component {
     if (indexLoading) {
       opts.noDataText = ( <div><img src={ img } className='loading'/></div> );
     } else {
-      opts.noDataText = '暂无数据显示。'; 
+      opts.noDataText = 'No data displayed';
     } 
 
     opts.onRowMouseOver = this.onRowMouseOver.bind(this);
@@ -382,7 +382,7 @@ export default class List extends Component {
       <div>
         <BootstrapTable data={ rows } bordered={ false } hover options={ opts } trClassName='tr-middle'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='name'>名称</TableHeaderColumn>
+          <TableHeaderColumn dataField='name'>name</TableHeaderColumn>
           <TableHeaderColumn width='60' dataField='operation'/>
         </BootstrapTable>
 
@@ -392,7 +392,7 @@ export default class List extends Component {
             nextSrc={  API_BASENAME + '/project/' + project_key + '/document/' + imgFiles[(photoIndex + 1) % imgFiles.length].id + '/download' }
             prevSrc={  API_BASENAME + '/project/' + project_key + '/document/' + imgFiles[(photoIndex + imgFiles.length - 1) % imgFiles.length].id + '/downlaod' }
             imageTitle={ imgFiles[photoIndex].name }
-            imageCaption={ imgFiles[photoIndex].uploader.name + ' 上传于 ' + moment.unix(imgFiles[photoIndex].uploaded_at).format('YYYY/MM/DD HH:mm') }
+            imageCaption={ imgFiles[photoIndex].uploader.name + ' upload to ' + moment.unix(imgFiles[photoIndex].uploaded_at).format('YYYY/MM/DD HH:mm') }
             onCloseRequest={ () => { this.setState({ imgPreviewShow: false }) } }
             onMovePrevRequest={ () => this.setState({ photoIndex: (photoIndex + imgFiles.length - 1) % imgFiles.length }) }
             onMoveNextRequest={ () => this.setState({ photoIndex: (photoIndex + 1) % imgFiles.length }) } /> }
@@ -401,15 +401,15 @@ export default class List extends Component {
           <DropzoneComponent style={ { height: '200px' } } config={ componentConfig } eventHandlers={ eventHandlers } djsConfig={ djsConfig } />
         </div>
         <div style={ { marginLeft: '5px', marginTop: '15px', marginBottom: '20px' } }>
-          { !indexLoading && collection.length > 0 && <span>共计 文件夹 { _.filter(collection, { d: 1 }).length } 个，文件 { _.reject(collection, { d: 1 }).length } 个。</span> }
-          { collection.length > 1 && _.isEmpty(query) && options.path.length > 1 && 
+          { !indexLoading && collection.length > 0 && <span>Total Folder: { _.filter(collection, { d: 1 }).length }, files: { _.reject(collection, { d: 1 }).length }.</span> }
+          { collection.length > 1 && _.isEmpty(query) && options.path.length > 1 &&
           <span style={ { marginLeft: '10px' } }>
             <i className='fa fa-download'></i>
-            <a href='#' onClick={ (e) => { e.preventDefault(); this.downloadAll(); } }>下载全部</a>
+            <a href='#' onClick={ (e) => { e.preventDefault(); this.downloadAll(); } }>Download all</a>
           </span> }
         </div>
         { this.state.copyModalShow &&
-        <CopyModal 
+        <CopyModal
           show
           project_key={ project_key }
           close={ () => { this.setState({ copyModalShow: false }); } }

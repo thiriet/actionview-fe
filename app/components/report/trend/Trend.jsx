@@ -23,7 +23,7 @@ export default class Trend extends Component {
       interval: 'day',
       is_accu: '0',
       statItems: [ 'new', 'resolve', 'close' ],
-      shape: 'bar' 
+      shape: 'bar'
     };
     this.gotoIssue = this.gotoIssue.bind(this);
   }
@@ -166,7 +166,7 @@ export default class Trend extends Component {
         <div className='report-title'>
           问题趋势图 
           <Link to={ '/project/' + project.key + '/report' }>
-            <Button bsStyle='link'>返回</Button>
+            <Button bsStyle='link'>Back</Button>
           </Link>
         </div>
         <Form horizontal className='report-filter-form'>
@@ -187,17 +187,17 @@ export default class Trend extends Component {
               <CheckboxGroup name='statItems' value={ this.state.statItems } onChange={ (newValue) => { this.setState({ statItems: newValue }) } } style={ { marginTop: '8px' } }>
                 <div style={ { float: 'left' } }>
                   <label style={ { fontWeight: 400 } }>
-                    <Checkbox2 value='new' style={ { float: 'left' } }/><span style={ { marginLeft: '2px' } }>新建的</span>
+                    <Checkbox2 value='new' style={ { float: 'left' } }/><span style={ { marginLeft: '2px' } }>New</span>
                   </label>
                 </div>
                 <div style={ { float: 'left', marginLeft: '8px' } }>
                   <label style={ { fontWeight: 400 } }>
-                    <Checkbox2 value='resolve'/><span style={ { marginLeft: '2px' } }>已解决的</span>
+                    <Checkbox2 value='resolve'/><span style={ { marginLeft: '2px' } }>Resolved</span>
                   </label>
                 </div>
                 <div style={ { float: 'left', marginLeft: '8px' } }>
                   <label style={ { fontWeight: 400 } }>
-                    <Checkbox2 value='close'/><span style={ { marginLeft: '2px' } }>已关闭的</span>
+                    <Checkbox2 value='close'/><span style={ { marginLeft: '2px' } }>Closed</span>
                   </label>
                 </div>
               </CheckboxGroup>
@@ -211,10 +211,10 @@ export default class Trend extends Component {
               <Select
                 simpleValue
                 clearable={ false }
-                placeholder='选择时间间隔'
+                placeholder='Choose time interval'
                 value={ this.state.interval }
                 onChange={ (newValue) => { this.state.interval = newValue; this.search(); } }
-                options={ [ { value: 'day', label: '天' }, { value: 'week', label: '周' }, { value: 'month', label: '月' } ] }/>
+                options={ [ { value: 'day', label: 'day' }, { value: 'week', label: 'week' }, { value: 'month', label: 'month' } ] }/>
             </Col>
             <Col sm={ 5 } componentClass={ ControlLabel }>
              是否累计
@@ -255,14 +255,14 @@ export default class Trend extends Component {
         <div className='report-conds-style'>
           { query.stat_time && sqlTxt &&
           <div className='cond-bar' style={ { marginTop: '0px', float: 'left' } }>
-            <div className='cond-contents' title={ sqlTxt }><b>检索条件</b>：{ sqlTxt }</div>
-            <div className='remove-icon' onClick={ () => { refresh({}); } } title='清空当前检索'><i className='fa fa-remove'></i></div>
-            <div className='remove-icon' onClick={ () => { this.setState({ saveFilterShow: true }); } } title='保存当前检索'><i className='fa fa-save'></i></div>
+            <div className='cond-contents' title={ sqlTxt }><b>Search condition</b>：{ sqlTxt }</div>
+            <div className='remove-icon' onClick={ () => { refresh({}); } } title='Clear current search'><i className='fa fa-remove'></i></div>
+            <div className='remove-icon' onClick={ () => { this.setState({ saveFilterShow: true }); } } title='Save filter'><i className='fa fa-save'></i></div>
           </div> }
           <ButtonGroup className='report-shape-buttongroup'>
-            <Button title='柱状图' style={ { height: '36px', backgroundColor: this.state.shape == 'bar' && '#eee' } } onClick={ ()=>{ this.setState({ shape: 'bar' }) } }>柱状图</Button>
-            <Button title='面积图' style={ { height: '36px', backgroundColor: this.state.shape == 'area' && '#eee' } } onClick={ ()=>{ this.setState({ shape: 'area' }) } }>面积图</Button>
-            <Button title='折线图' style={ { height: '36px', backgroundColor: this.state.shape == 'line' && '#eee' } } onClick={ ()=>{ this.setState({ shape: 'line' }) } }>折线图</Button>
+            <Button title='Histogram' style={ { height: '36px', backgroundColor: this.state.shape == 'bar' && '#eee' } } onClick={ ()=>{ this.setState({ shape: 'bar' }) } }>Histogram</Button>
+            <Button title='Area chart' style={ { height: '36px', backgroundColor: this.state.shape == 'area' && '#eee' } } onClick={ ()=>{ this.setState({ shape: 'area' }) } }>Area chart</Button>
+            <Button title='line chart' style={ { height: '36px', backgroundColor: this.state.shape == 'line' && '#eee' } } onClick={ ()=>{ this.setState({ shape: 'line' }) } }>Line chart</Button>
           </ButtonGroup> 
           { this.state.interval === 'day' &&
           <div style={ { float: 'right' } }>
@@ -271,7 +271,7 @@ export default class Trend extends Component {
               checked={ this.state.notWorkingShow }
               onClick={ () => { this.setState({ notWorkingShow: !this.state.notWorkingShow }) } }
               style={ { display: 'inline-block', marginRight: '20px', marginLeft: '10px' } }>
-              显示非工作日 
+                Show non-working days
             </Checkbox>
           </div> }
         </div>
@@ -290,9 +290,9 @@ export default class Trend extends Component {
                 <i className='fa fa-warning'></i>
               </span><br/> 
               { trend.length > 100 &&  
-              <span>统计结果数据量太大，无法生成统计图，建议您重新选择过滤条件。</span> }
+              <span>The statistical results are too large to generate statistical graphs. It is recommended that you reselect the filter criteria.</span> }
               { !query.stat_time &&  
-              <span>抱歉，统计时间段不能为空。</span> }
+              <span>Sorry, the statistical time period cannot be empty.</span> }
             </div>
           </div> }
           { this.state.shape === 'bar' && !hasErr && 
@@ -308,9 +308,9 @@ export default class Trend extends Component {
               <YAxis />
               <Tooltip />
               <Legend />
-              { this.state.statItems.indexOf('new') !== -1 && <Bar dataKey='new' name='新建的' stackId='a' fill='#4572A7' /> }
-              { this.state.statItems.indexOf('resolve') !== -1 && <Bar dataKey='resolved' name='已解决的' stackId='a' fill='#89A54E' /> }
-              { this.state.statItems.indexOf('close') !== -1 && <Bar dataKey='closed' name='已关闭的' stackId='a' fill='#AA4643' /> }
+              { this.state.statItems.indexOf('new') !== -1 && <Bar dataKey='new' name='New' stackId='a' fill='#4572A7' /> }
+              { this.state.statItems.indexOf('resolve') !== -1 && <Bar dataKey='resolved' name='Resolved' stackId='a' fill='#89A54E' /> }
+              { this.state.statItems.indexOf('close') !== -1 && <Bar dataKey='closed' name='Closed' stackId='a' fill='#AA4643' /> }
             </BarChart>
           </div> }
           { this.state.shape === 'line' && !hasErr &&
@@ -325,9 +325,9 @@ export default class Trend extends Component {
               <CartesianGrid strokeDasharray='3 3'/>
               <Tooltip/>
               <Legend />
-              { this.state.statItems.indexOf('new') !== -1 && <Line dataKey='new' name='新建的' stroke='#4572A7'/> }
-              { this.state.statItems.indexOf('resolve') !== -1 && <Line dataKey='resolved' name='已解决的' stroke='#89A54E'/> }
-              { this.state.statItems.indexOf('close') !== -1 && <Line dataKey='closed' name='已关闭的' stroke='#AA4643'/> }
+              { this.state.statItems.indexOf('new') !== -1 && <Line dataKey='new' name='New' stroke='#4572A7'/> }
+              { this.state.statItems.indexOf('resolve') !== -1 && <Line dataKey='resolved' name='Resolved' stroke='#89A54E'/> }
+              { this.state.statItems.indexOf('close') !== -1 && <Line dataKey='closed' name='Closed' stroke='#AA4643'/> }
             </LineChart>
           </div> }
           { this.state.shape === 'area' && !hasErr &&
@@ -359,21 +359,21 @@ export default class Trend extends Component {
               <CartesianGrid strokeDasharray='3 3'/>
               <Tooltip/>
               <Legend />
-              { this.state.statItems.indexOf('new') !== -1 && <Area dataKey='new' name='新建的' fillOpacity={ 1 } stroke='#4572A7' fill='url(#colorNew)' type='monotone'/> }
-              { this.state.statItems.indexOf('resolve') !== -1 && <Area dataKey='resolved' name='已解决的' fillOpacity={ 1 } stroke='#89A54E' fill='url(#colorResolved)' type='monotone'/> }
-              { this.state.statItems.indexOf('close') !== -1 && <Area dataKey='closed' name='已关闭的' fillOpacity={ 1 } stroke='#AA4643' fill='url(#colorClosed)' type='monotone'/> }
+              { this.state.statItems.indexOf('new') !== -1 && <Area dataKey='new' name='New' fillOpacity={ 1 } stroke='#4572A7' fill='url(#colorNew)' type='monotone'/> }
+              { this.state.statItems.indexOf('resolve') !== -1 && <Area dataKey='resolved' name='Resolved' fillOpacity={ 1 } stroke='#89A54E' fill='url(#colorResolved)' type='monotone'/> }
+              { this.state.statItems.indexOf('close') !== -1 && <Area dataKey='closed' name='Closed' fillOpacity={ 1 } stroke='#AA4643' fill='url(#colorClosed)' type='monotone'/> }
             </AreaChart>
           </div> }
           { !hasErr &&
           <div style={ { float: 'left', width: '100%', marginBottom: '30px' } }>
-            <span>注：该图表最多展示100条目。</span>
+            <span>Note：The chart shows a maximum of 100 entries.</span>
             <Table responsive bordered={ true }>
               <thead>
                 <tr>
-                  <th>时间</th>
-                  <th>新建的</th>
-                  <th>已解决的</th>
-                  <th>已关闭的</th>
+                  <th>Date</th>
+                  <th>New</th>
+                  <th>Resolved</th>
+                  <th>Closed</th>
                 </tr>
               </thead>
               <tbody>

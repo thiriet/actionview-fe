@@ -44,7 +44,7 @@ export default class OptionValuesConfigModal extends Component {
     if (ecode === 0) {
       this.setState({ ecode: 0 });
       close();
-      notify.show('配置完成。', 'success', 2000);
+      notify.show('Configuration is complete.', 'success', 2000);
     } else {
       this.setState({ ecode: ecode });
     }
@@ -155,7 +155,7 @@ export default class OptionValuesConfigModal extends Component {
           <Modal.Title id='contained-modal-title-la'>{ '字段可选值配置 - ' + this.props.data.name }</Modal.Title>
         </Modal.Header>
         <Modal.Body style={ { height: '420px', overflow: 'auto' } }>
-          { cards.length > 0 && <div style={ { marginTop: '-6px' } }>通过上下拖拽改变显示顺序。<Button bsStyle='link' onClick={ this.sort.bind(this) }>按字母排序</Button></div> }
+          { cards.length > 0 && <div style={ { marginTop: '-6px' } }>Drag up and down to change the display order.<Button bsStyle='link' onClick={ this.sort.bind(this) }>按字母排序</Button></div> }
           { cards.length > 0 ?
             cards.map((op, i) => {
               return (
@@ -187,7 +187,7 @@ export default class OptionValuesConfigModal extends Component {
                   onKeyDown={ (e) => { if (e.keyCode == '13') { e.preventDefault(); this.add(); } } }/>
               </Col>
               {/* <Col sm={ 1 }>
-                <Button bsStyle='link' style={ { marginLeft: '-25px' } } onClick={ this.add.bind(this) } disabled={ !enableAdd }>添加</Button>
+                <Button bsStyle='link' style={ { marginLeft: '-25px' } } onClick={ this.add.bind(this) } disabled={ !enableAdd }>Add</Button>
               </Col> */}
             </FormGroup>
           </Form>
@@ -195,8 +195,8 @@ export default class OptionValuesConfigModal extends Component {
         <Modal.Footer>
           <span className='ralign'>{ this.state.ecode !== 0 && !loading && errMsg[this.state.ecode] }</span>
           <img src={ img } className={ loading ? 'loading' : 'hide' }/>
-          <Button disabled={ !_.isEmpty(editingCards) || loading || strCards == JSON.stringify(cards) } onClick={ this.save.bind(this) }>确定</Button>
-          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel.bind(this) }>取消</Button>
+          <Button disabled={ !_.isEmpty(editingCards) || loading || strCards == JSON.stringify(cards) } onClick={ this.save.bind(this) }>Submit</Button>
+          <Button bsStyle='link' disabled={ loading } onClick={ this.cancel.bind(this) }>Cancel</Button>
         </Modal.Footer>
       </Modal>
     );

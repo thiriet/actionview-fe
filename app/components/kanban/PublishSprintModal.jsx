@@ -17,7 +17,7 @@ const validate = (values, props) => {
   }
 
   if (!values.start_time) {
-    errors.start_time = '必填';
+    errors.start_time = 'Required';
   } else {
     if (!moment(values.start_time).isValid()) {
       errors.start_time = '格式错误';
@@ -25,7 +25,7 @@ const validate = (values, props) => {
   }
 
   if (!values.complete_time) {
-    errors.complete_time = '必填';
+    errors.complete_time = 'Required';
   } else {
     if (!moment(values.complete_time).isValid()) {
       errors.complete_time = '格式错误';
@@ -102,11 +102,11 @@ export default class PublishModal extends Component {
 
   componentWillMount() {
     const { initializeForm, sprint } = this.props;
-    initializeForm({ 
-      name: sprint.name || '', 
-      start_time: moment(), 
-      complete_time: moment().add(15, 'days'), 
-      description: sprint.description || '' 
+    initializeForm({
+      name: sprint.name || '',
+      start_time: moment(),
+      complete_time: moment().add(15, 'days'),
+      description: sprint.description || ''
     });
   }
 
@@ -114,32 +114,32 @@ export default class PublishModal extends Component {
     const { 
       sprint,
       i18n: { errMsg }, 
-      fields: { name, start_time, complete_time, description }, 
+      fields: { name, start_time, complete_time, description },
       handleSubmit, 
       invalid, 
-      submitting 
+      submitting
     } = this.props;
 
     return (
       <Modal show onHide={ this.handleCancel } backdrop='static' aria-labelledby='contained-modal-title-sm'>
         <Modal.Header closeButton style={ { background: '#f0f0f0', height: '50px' } }>
-          <Modal.Title id='contained-modal-title-la'>发布 - { sprint.name }</Modal.Title>
+              <Modal.Title id='contained-modal-title-la'>Release - { sprint.name }</Modal.Title>
         </Modal.Header>
         <form onSubmit={ handleSubmit(this.handleSubmit) } onKeyUp={ (e) => { if (e.keyCode == 13) { e.preventDefault(); } } }>
         <Modal.Body style={ { maxHeight: '580px' } }>
           <FormGroup validationState={ name.error ? 'error' : null }>
-            <ControlLabel><span className='txt-impt'>*</span>名称</ControlLabel>
+            <ControlLabel><span className='txt-impt'>*</span>Name</ControlLabel>
             <FormControl
               disabled={ submitting }
               type='text'
               { ...name }
-              placeholder='名称'/>
-            { name.error && 
+              placeholder='Name'/>
+            { name.error &&
               <HelpBlock style={ { float: 'right' } }>{ name.error }</HelpBlock> }
           </FormGroup>
           <div>
             <FormGroup style={ { width: '45%', display: 'inline-block' } } validationState={ start_time.error ? 'error' : null }>
-              <ControlLabel><span className='txt-impt'>*</span>开始时间</ControlLabel>
+              <ControlLabel><span className='txt-impt'>*</span>Start date</ControlLabel>
               <DateTime 
                 locale='zh-cn' 
                 mode='date' 
@@ -165,13 +165,13 @@ export default class PublishModal extends Component {
             </FormGroup>
           </div>
           <FormGroup>
-            <ControlLabel>描述</ControlLabel>
+            <ControlLabel>Description</ControlLabel>
             <FormControl 
               disabled={ submitting } 
               componentClass='textarea'
               style={ { height: '200px' } }
               { ...description }
-              placeholder='描述'/>
+              placeholder='Description'/>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
@@ -182,10 +182,10 @@ export default class PublishModal extends Component {
             checked={ this.state.isSendMsg }
             onClick={ () => { this.setState({ isSendMsg: !this.state.isSendMsg }) } }
             style={ { display: 'inline-block', marginRight: '20px', marginLeft: '10px' } }>
-            通知项目成员
+            Notify project members
           </Checkbox>
-          <Button disabled={ submitting || invalid } type='submit'>确定</Button>
-          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>取消</Button>
+          <Button disabled={ submitting || invalid } type='submit'>Submit</Button>
+          <Button bsStyle='link' disabled={ submitting } onClick={ this.handleCancel }>Cancel</Button>
         </Modal.Footer>
         </form>
       </Modal>
