@@ -71,19 +71,18 @@ export default class PublishModal extends Component {
   async handleSubmit() {
     const { values, publish, sprint, close } = this.props;
     
-    if (values.start_time)
-    {
+    if (values.start_time) {
       values.start_time = parseInt(moment(values.start_time).startOf('day').format('X'));
     }
-    if (values.complete_time)
-    {
+
+    if (values.complete_time) {
       values.complete_time = parseInt(moment(values.complete_time).endOf('day').format('X'));
     }
 
     values.isSendMsg = this.state.isSendMsg;
 
     const ecode = await publish(values, sprint.no);
-    this.setState({ ecode: ecode });
+    this.setState({ ecode });
 
     if (ecode === 0) {
       notify.show('启动完成。', 'success', 2000);

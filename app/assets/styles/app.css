@@ -429,7 +429,8 @@ table tr:hover .remove-icon{
 }
 
 .attachment-content:hover {
-  background-color: #f0f0f0
+  background-color: #f0f0f0;
+  box-shadow: 0 0 5px #ccc;
 }
 
 .attachment-thumb {
@@ -741,7 +742,7 @@ table tr:hover .remove-icon{
 
 .card {
   position: relative;
-  height: 200px;
+  height: 206px;
   border: 1px solid #ddd;
 }
 
@@ -760,17 +761,16 @@ table tr:hover .remove-icon{
 
 .card .title {
   position: absolute;
-  top: 50px;  
+  top: 5px;  
+  left: 5px;  
   display: inline-block;
   width: 100%;
   color: #000;
   box-sizing: border-box;
-  text-align: center;
   padding: 5px;
 }
 
 .card .title .name {
-  font-size: 19px;
   margin: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -782,26 +782,57 @@ table tr:hover .remove-icon{
   margin: 0;
 }
 
+.card .statuss {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 10;
+  display: block;
+}
+
 .card .status {
   position: absolute;
-  top: 2px;
-  right: 2px;
+  bottom: 8px;
+  right: 8px;
   z-index: 10;
+  display: block;
 }
+
+.card:hover .status {
+  display: none;
+}
+
 .card .leader {
   position: absolute;
   bottom: 5px;
-  left: 5px;
+  left: 10px;
   color: #666;
 }
+
 .card .btns {
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 8px;
   display: none;
 }
+
 .card:hover .btns {
   display: block;
+}
+
+.card .stats-cnt {
+  position: absolute; 
+  top: 125px;
+  display: inline-block;
+  width: 100%;
+  text-align: center; 
+  color: #aaa;
+  font-size: 12px;
+}
+
+.card .stats-cnt-cell {
+  width: 33.33%; 
+  display: inline-block;
 }
 
 .menu-active {
@@ -1178,7 +1209,7 @@ div.filepicker {
 
 .file-content .favorite-icon {
   position: absolute;
-  right: 18px;
+  right: 16px;
   top: 8px;
   color: #FF9900;
   opacity: 1 !important;

@@ -1,5 +1,27 @@
 import React, { PropTypes, Component } from 'react';
-import { Modal, Button, ControlLabel, FormControl, Label, Grid, Row, Col, Table, Tabs, Tab, Form, FormGroup, DropdownButton, MenuItem, ButtonToolbar, ButtonGroup, OverlayTrigger, Popover, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {
+  Modal,
+  Button,
+  ControlLabel,
+  FormControl,
+  Label,
+  Grid,
+  Row,
+  Col,
+  Table,
+  Tabs,
+  Tab,
+  Form,
+  FormGroup,
+  DropdownButton,
+  MenuItem,
+  ButtonToolbar,
+  ButtonGroup,
+  OverlayTrigger,
+  Popover,
+  ListGroup,
+  ListGroupItem
+} from 'react-bootstrap';
 import { Link } from 'react-router';
 import DropzoneComponent from 'react-dropzone-component';
 import Lightbox from 'react-image-lightbox';
@@ -50,8 +72,8 @@ export default class DetailBar extends Component {
       editProgress: false, 
       editModalShow: false, 
       previewModalShow: false, 
-      subtaskShow: false, 
-      linkShow: false, 
+      subtaskShow: true,
+      linkShow: true,
       linkIssueModalShow: false, 
       delLinkModalShow: false, 
       delLinkData: {}, 
@@ -912,17 +934,17 @@ export default class DetailBar extends Component {
                     Subtask
                   </Col>
                   <Col sm={ 9 }>
-                    { data.subtasks.length > 3 &&
+                    { data.subtasks.length > 5 &&
                     <div style={ { marginTop: '7px' } }>
                       Total { data.subtasks.length } Subtasks
                       <span style={ { marginLeft: '5px' } }> 
                         <a href='#' onClick={ (e) => { e.preventDefault(); this.setState({ subtaskShow: !this.state.subtaskShow }) } }>
                           { this.state.subtaskShow ? 'Collapse' : 'unfold' }
-                          <i className={ this.state.subtaskShow ?  'fa fa-angle-double-up' : 'fa fa-angle-double-down' }></i>
+                          <i className={ this.state.subtaskShow ?  'fa fa-angle-up' : 'fa fa-angle-down' }></i>
                         </a>
                       </span>
                     </div> }
-                    <Table condensed hover responsive className={ (!this.state.subtaskShow && data.subtasks.length > 5) ? 'hide' : '' } style={ { marginTop: '10px', marginBottom: '0px' } }>
+                    <Table condensed hover responsive className={ (!this.state.subtaskShow && data.subtasks.length > 5) ? 'hide' : '' } style={ { marginTop: '10px', marginBottom: '0px',  borderBottom: '1px solid #ddd' } }>
                       <tbody>
                       { _.map(data.subtasks, (val, key) => {
                         return (<tr key={ 'subtask' + key }>
@@ -947,17 +969,17 @@ export default class DetailBar extends Component {
                     Link issue
                   </Col>
                   <Col sm={ 9 }>
-                    { data.links.length > 3 &&
+                    { data.links.length > 5 &&
                     <div style={ { marginTop: '7px' } }>
                       Total{ data.links.length }个问题
                       <span style={ { marginLeft: '5px' } }> 
                         <a href='#' onClick={ (e) => { e.preventDefault(); this.setState({ linkShow: !this.state.linkShow }) } }>
                           { this.state.linkShow ? 'Collapse' : 'unfold' }
-                          <i className={ this.state.linkShow ?  'fa fa-angle-double-up' : 'fa fa-angle-double-down' }></i>
+                          <i className={ this.state.linkShow ?  'fa fa-angle-up' : 'fa fa-angle-down' }></i>
                         </a>
                       </span>
                     </div> }
-                    <Table condensed hover responsive className={ (!this.state.linkShow && data.links.length > 5) ? 'hide' : '' } style={ { marginTop: '10px', marginBottom: '0px' } }>
+                    <Table condensed hover responsive className={ (!this.state.linkShow && data.links.length > 5) ? 'hide' : '' } style={ { marginTop: '10px', marginBottom: '0px', borderBottom: '1px solid #ddd' } }>
                       <tbody>
                       { _.map(data.links, (val, key) => {
                         let linkedIssue = {};
@@ -1054,14 +1076,14 @@ export default class DetailBar extends Component {
                     const noImgFiles = _.filter(data[field.key], (f) => { return _.indexOf([ 'image/jpeg', 'image/jpg', 'image/png', 'image/gif' ], f.type) === -1 });
                     contents = (<div>
                       { noImgFiles.length > 0 &&
-                        <Table condensed hover responsive>
+                        <Table condensed hover responsive style={ { borderBottom: '1px solid #ddd' } }>
                           <tbody>
                             { _.map(noImgFiles, (f, i) => 
                               <tr key={ i }>
                                 <td>
                                   <span style={ { marginRight: '5px', color: '#777' } }><i className={ getFileIconCss(f.name) }></i></span> 
                                   { options.permissions && options.permissions.indexOf('download_file') !== -1 ? 
-                                    <a href={ API_BASENAME + '/project/' + project.key + '/file/' + f.id } download={ f.name }>{ f.name }</a> :
+                                    <a target='_blank' href={ API_BASENAME + '/project/' + project.key + '/file/' + f.id + (f.type == 'application/pdf' ? ('/' + f.name) : '') } download={ f.type == 'application/pdf' ? false : f.name }>{ f.name }</a> :
                                     <span>{ f.name }</span> }
                                 </td>
                                 { options.permissions && (options.permissions.indexOf('remove_file') !== -1 || (options.permissions.indexOf('remove_self_file') !== -1 && f.uploader.id == user.id)) && 

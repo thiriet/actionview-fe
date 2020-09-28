@@ -1,16 +1,17 @@
 import React, { PropTypes, Component } from 'react';
-//import { Link } from 'react-router';
+import { Link } from 'react-router';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { FormGroup, FormControl, ButtonGroup, Button, Label, DropdownButton, MenuItem } from 'react-bootstrap';
+import { AreaChart, Area } from 'recharts';
 import Select from 'react-select';
 import ApiClient from '../../../shared/api-client';
 import _ from 'lodash';
 import { notify } from 'react-notify-toast';
 
 const $ = require('$');
-const CreateModal = require('../project/CreateModal2');
-const EditModal = require('../project/EditModal');
-const CloseNotify = require('../project/CloseNotify');
+const CreateModal = require('./CreateModal2');
+const EditModal = require('./EditModal');
+const CloseNotify = require('./CloseNotify');
 const loadingImg = require('../../assets/images/loading.gif');
 
 export default class List extends Component {
@@ -27,7 +28,9 @@ export default class List extends Component {
       principal: {},
       name: '', 
       mode: 'card',
-      status: 'active' };
+      sortkey: 'default',
+      status: 'active'
+    };
 
     this.createModalClose = this.createModalClose.bind(this);
     this.editModalClose = this.editModalClose.bind(this);
@@ -90,9 +93,9 @@ export default class List extends Component {
       if(event.keyCode == '13') {  
         const { index } = self.props;
         if (_.trim(self.state.name)) {
-          index({ status: self.state.status, name: _.trim(self.state.name) });
+          index({ status: self.state.status, name: _.trim(self.state.name), sortkey: self.state.sortkey });
         } else {
-          index({ status: self.state.status });
+          index({ status: self.state.status, sortkey: self.state.sortkey });
         }
       }
     });
@@ -141,7 +144,7 @@ export default class List extends Component {
 
   more() {
     const { more, collection } = this.props;
-    more({ status: this.state.status, name: this.state.name, offset_key: collection[collection.length - 1].key });
+    more({ status: this.state.status, name: this.state.name, sortkey: this.state.sortkey, offset_key: collection[collection.length - 1].key });
   }
 
   willSetPrincipal(pid) {
@@ -202,10 +205,26 @@ export default class List extends Component {
 
     const { index } = this.props;
     if (_.trim(this.state.name)) {
-      index({ status: newValue, name: _.trim(this.state.name) });
+      index({ status: newValue, name: _.trim(this.state.name), sortkey: this.state.sortkey });
     } else {
-      index({ status: newValue });
+      index({ status: newValue, sortkey: this.state.sortkey });
     }
+  }
+
+  sortChange(newValue) {
+    this.setState({ sortkey: newValue });
+
+    const { index } = this.props;
+    if (_.trim(this.state.name)) {
+      index({ status: this.state.status, name: _.trim(this.state.name), sortkey: newValue });
+    } else {
+      index({ status: this.state.status, sortkey: newValue });
+    }
+  }
+
+  async modeChange() {
+    await this.setState({ mode: this.state.mode == 'list' ? 'card' : 'list' })
+    this.setState({ mode: this.state.mode });
   }
 
   onRowMouseOver(rowData) {
@@ -231,11 +250,34 @@ export default class List extends Component {
       create, 
       stop, 
       update, 
-      options={} } = this.props;
-    const { willSetPrincipalPids, settingPrincipalPids } = this.state;
-    const { hoverRowId, operateShow } = this.state;
+      options={}
+    } = this.props;
+
+    const {
+      hoverRowId,
+      operateShow,
+      willSetPrincipalPids,
+      settingPrincipalPids
+    } = this.state;
+
+    const sortOptions = [
+      { value: 'default', label: '默认' },
+      { value: 'activity', label: '活跃度' },
+      { value: 'create_time_asc', label: '创建时间 ↑' },
+      { value: 'create_time_desc', label: '创建时间 ↓' },
+      { value: 'key_asc', label: '健值 ↑' },
+      { value: 'key_desc', label: '健值 ↓' },
+      { value: 'all_issues_cnt', label: '全部问题数' },
+      { value: 'unresolved_issues_cnt', label: '未解决问题数' },
+      { value: 'assigntome_issues_cnt', label: '分配给我问题数' }
+    ];
 
     const node = ( <span><i className='fa fa-cog'></i></span> );
+
+    let chartWidth = 0;
+    if ($('.cardContainer .card').length > 0) {
+      chartWidth = $('.cardContainer .card').get(0).clientWidth - 10;
+    }
 
     const projects = [];
     const projectNum = collection.length;
@@ -298,6 +340,13 @@ export default class List extends Component {
           </div>
         ),
         status: collection[i].status == 'active' ? <Label bsStyle='success'>active</Label> : <Label>Closed</Label>,
+        issues: (
+          <ul style={ { marginBottom: '0px', paddingLeft: '0px', listStyle: 'none' } }>
+            <li>All issues - <Link to={ '/project/' + collection[i].key + '/issue' }>{ collection[i].stats ? collection[i].stats.all : '' }</Link></li>
+            <li>Unresolved - <Link to={ '/project/' + collection[i].key + '/issue?resolution=Unresolved' }>{ collection[i].stats ? collection[i].stats.unresolved : '' }</Link></li>
+            <li>Assigned to me - <Link to={ '/project/' + collection[i].key + '/issue?resolution=Unresolved&assignee=me' }>{ collection[i].stats ? collection[i].stats.assigntome : '' }</Link></li>
+          </ul>
+        ),
         operation: (
           collection[i].principal.id === user.id &&
           <div>
@@ -337,11 +386,24 @@ export default class List extends Component {
             <span style={ { float: 'left', width: '20%' } }>
               <Button onClick={ () => { this.setState({ createModalShow: true }); } } disabled={ indexLoading }><i className='fa fa-plus'></i>&nbsp;New project</Button>
             </span> }
-            <ButtonGroup style={ { float: 'right', marginLeft: '10px' } }>
-              <Button title='卡片模式' style={ { backgroundColor: this.state.mode == 'card' && '#eee' } } onClick={ ()=>{ this.setState({ mode: 'card' }) } }><i className='fa fa-th'></i></Button>
-              <Button title='列表模式' style={ { backgroundColor: this.state.mode == 'list' && '#eee' } } onClick={ ()=>{ this.setState({ mode: 'list' }) } }><i className='fa fa-list'></i></Button>
-            </ButtonGroup>
-            <span style={ { float: 'right', width: '90px' } }>
+            <span style={ { float: 'right' } }>
+              <Button onClick={ this.modeChange.bind(this) }><i className={ this.state.mode == 'list' ? 'fa fa-th' : 'fa fa-list' }></i></Button>
+            </span>
+            <span style={ { float: 'right', marginRight: '10px' } }>
+              <DropdownButton
+                pullRight
+                title='排序'
+                onSelect={ this.sortChange.bind(this) }>
+                  { _.map(sortOptions, (v, i) =>
+                    <MenuItem key={ i } eventKey={ v.value }>
+                      <div style={ { display: 'inline-block', width: '20px', textAlign: 'left' } }>
+                        { this.state.sortkey == v.value && <span><i className='fa fa-check'></i></span> }
+                      </div>
+                      <span>{ v.label }</span>
+                    </MenuItem> ) }
+              </DropdownButton>
+            </span>
+            <span style={ { float: 'right', width: '90px', marginRight: '10px' } }>
               <Select
                 simpleValue
                 clearable={ false }
@@ -363,14 +425,15 @@ export default class List extends Component {
         </div>
         <div className='clearfix' style={ { marginLeft: this.state.mode === 'card' ? '-15px' : 0 } }>
           { this.state.mode === 'list' &&
-          <BootstrapTable data={ projects } bordered={ false } hover options={ opts } trClassName='tr-middle'>
-            <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
-            <TableHeaderColumn width='50' dataField='no'>NO</TableHeaderColumn>
-            <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
-            <TableHeaderColumn dataField='key' width='170'>Key value</TableHeaderColumn>
-            <TableHeaderColumn dataField='principal' width='320'>Principal responsible</TableHeaderColumn>
-            <TableHeaderColumn dataField='status' width='80'>Status</TableHeaderColumn>
-            <TableHeaderColumn width='60' dataField='operation'/>
+            <BootstrapTable data={ projects } bordered={ false } hover options={ opts } trClassName='tr-top'>
+              <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
+              <TableHeaderColumn width='50' dataField='no'>NO</TableHeaderColumn>
+              <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
+              <TableHeaderColumn dataField='key' width='150'>Key</TableHeaderColumn>
+              <TableHeaderColumn dataField='principal' width='280'>Assignee</TableHeaderColumn>
+              <TableHeaderColumn dataField='issues' width='170'>Issues</TableHeaderColumn>
+              <TableHeaderColumn dataField='status' width='80'>Status</TableHeaderColumn>
+              <TableHeaderColumn width='60' dataField='operation'/>
             </BootstrapTable> }
           { this.state.mode === 'card' && indexLoading &&
             <div style={ { marginTop: '50px', marginBottom: '50px', textAlign: 'center' } }>
@@ -382,24 +445,58 @@ export default class List extends Component {
               您可创建项目 或 联系其他项目管理员将您添加到项目成员中
             </div> }
           { this.state.mode === 'card' && !indexLoading && collection.length > 0 &&
-          collection.map((model, i) => {
-            return (
+            collection.map((model, i) => {
+              return (
               <div className='col-lg-3 col-md-4 col-sm-6 col-xs-12 cardContainer' key={ i }>
                 <div className='card'>
-                  { model.status !== 'active' &&
-                  <div className='status'><Label>Closed</Label></div> }
                   <div className='content'>
-                    <span className='title'>
+                    <div className='title'>
                       { model.status == 'active'
-                      ? <p className='name'><a href='#' title={ model.name } onClick={ (e) => { e.preventDefault(); this.entry(model.key); } }>{ model.name }</a></p>
-                      : <p className='name'>{ model.name }</p> }
-                      <p className='key'>{ model.key }</p>
-                    </span>
+                      ? <p className='name'><a href='#' title={ model.name } onClick={ (e) => { e.preventDefault(); this.entry(model.key); } }>{ model.key + ' - ' + model.name }</a></p>
+                      : <p className='name'>{ model.key + ' - ' + model.name }</p> }
+                    </div>
+                    { !model.stats ?
+                      <div style={ { marginTop: '60px', textAlign: 'center' } }>
+                        <img src={ loadingImg } className='loading'/>
+                      </div>
+                      :
+                      <AreaChart
+                        width={ chartWidth }
+                        height={ 80 }
+                        data={ model.stats.trend || [] }
+                        style={ { margin: '35px auto' } }>
+                        <Area type='monotone' dataKey='new' stroke={ model.status !== 'active' ? '#aaa' : '#337ab7' } fill={ model.status !== 'active' ? '#aaa' : '#337ab7' } strokeWidth={ 1 } />
+                      </AreaChart> }
+                    <div className='stats-cnt'>
+                      <div className='stats-cnt-cell'>
+                        全部<br/>
+                        { !model.stats ?
+                          <img style={ { height: '12px', width: '12px' } } src={ loadingImg } className='loading'/>
+                          :
+                          (model.status !== 'active' ? model.stats.all : <Link to={ '/project/' + model.key + '/issue' }>{ model.stats.all }</Link>) }
+                      </div>
+                      <div className='stats-cnt-cell'>
+                        未解决<br/>
+                        { !model.stats ?
+                          <img style={ { height: '12px', width: '12px' } } src={ loadingImg } className='loading'/>
+                          :
+                          (model.status !== 'active' ? model.stats.unresolved : <Link to={ '/project/' + model.key + '/issue?resolution=Unresolved' }>{ model.stats.unresolved }</Link>) }
+                      </div>
+                      <div className='stats-cnt-cell'>
+                        分配给我<br/>
+                        { !model.stats ?
+                          <img style={ { height: '12px', width: '12px' } } src={ loadingImg } className='loading'/>
+                          :
+                          (model.status !== 'active' ? model.stats.assigntome : <Link to={ '/project/' + model.key + '/issue?assignee=me&resolution=Unresolved' }>{ model.stats.assigntome }</Link>) }
+                      </div>
+                    </div>
                   </div>
                   <div className='leader'>
                     <span>Principal: { model.principal.name }</span>
                   </div>
-                  { model.principal.id === user.id && 
+                  { model.status !== 'active' &&
+                  <div className={ model.principal.id === user.id ? 'status' : 'statuss' }><Label style={ { backgroundColor: '#aaa' } }>已关闭</Label></div> }
+                  { model.principal.id === user.id &&
                   <div className='btns'>
                     { model.status == 'active' && 
                       <span style={ { marginLeft: '3px' } } title='Edit' onClick={ this.edit.bind(this, model.id) } className='comments-button'><i className='fa fa-pencil' aria-hidden='true'></i></span> }
@@ -411,8 +508,7 @@ export default class List extends Component {
                   </div> }
                 </div>
               </div>
-            )
-          }) }
+            ) }) }
           { this.state.editModalShow && 
             <EditModal 
               show 
@@ -434,9 +530,9 @@ export default class List extends Component {
               stop={ stop }/> }
         </div>
         { increaseCollection.length > 0 && increaseCollection.length % (options.limit || 4) === 0 && 
-        <ButtonGroup vertical block style={ { marginTop: '15px' } }>
-          <Button onClick={ this.more.bind(this) }>{ <div><img src={ loadingImg } className={ moreLoading ? 'loading' : 'hide' }/><span>{ moreLoading ? '' : 'More...' }</span></div> }</Button>
-        </ButtonGroup> }
+          <ButtonGroup vertical block style={ { marginTop: '15px' } }>
+            <Button onClick={ this.more.bind(this) }>{ <div><img src={ loadingImg } className={ moreLoading ? 'loading' : 'hide' }/><span>{ moreLoading ? '' : 'More...' }</span></div> }</Button>
+          </ButtonGroup> }
       </div>
     );
   }

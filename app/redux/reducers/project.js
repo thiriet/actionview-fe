@@ -7,6 +7,7 @@ const initialState = {
   indexLoading: false, 
   increaseCollection: [], 
   moreLoading: false, 
+  statsLoading: false,
   itemLoading: false, 
   item: {}, 
   loading: false, 
@@ -19,7 +20,7 @@ const initialState = {
 export default function project(state = initialState, action) {
   switch (action.type) {
     case t.PROJECT_INDEX:
-      return { ...state, indexLoading: true, collection: [], increaseCollection: [] };
+      return { ...state, indexLoading: true, moreLoading: false, loading: false, itemLoading: false, collection: [], increaseCollection: [] };
 
     case t.PROJECT_INDEX_SUCCESS:
       if (action.result.ecode === 0) {
@@ -44,6 +45,23 @@ export default function project(state = initialState, action) {
 
     case t.PROJECT_MORE_FAIL:
       return { ...state, moreLoading: false, error: action.error };
+
+    case t.PROJECT_STATS:
+      return { ...state, statsLoading: true };
+
+    case t.PROJECT_STATS_SUCCESS:
+      if (action.result.ecode === 0) {
+        _.forEach(action.result.data, (v) => {
+          const i = _.findIndex(state.collection, { key: v.key });
+          if (i !== -1) {
+            state.collection[i].stats = v.stats;
+          }
+        });
+      }
+      return { ...state, statsLoading: false, ecode: action.result.ecode };
+
+    case t.PROJECT_STATS_FAIL:
+      return { ...state, statsLoading: false, error: action.error };
 
     case t.PROJECT_OPTIONS:
       return { ...state, loading: true };
@@ -113,7 +131,7 @@ export default function project(state = initialState, action) {
     case t.PROJECT_CREATEINDEX_SUCCESS:
       if ( action.result.ecode === 0 ) {
         const ind = _.findIndex(state.collection, { id: action.result.data.id });
-        state.collection[ind] = action.result.data;
+        _.assign(state.collection[ind], action.result.data);
       }
       return { ...state, itemLoading: false, ecode: action.result.ecode };
 

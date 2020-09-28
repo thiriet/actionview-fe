@@ -218,7 +218,7 @@ export default class List extends Component {
 
     return (
       <div style={ { marginBottom: '30px' } }>
-        <BootstrapTable data={ versions } bordered={ false } hover options={ opts } trClassName='tr-middle'>
+        <BootstrapTable data={ versions } bordered={ false } hover options={ opts } trClassName='tr-top'>
           <TableHeaderColumn dataField='id' isKey hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
           <TableHeaderColumn dataField='start_time' width='120'>Start date</TableHeaderColumn>
